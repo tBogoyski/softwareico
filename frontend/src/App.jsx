@@ -1,19 +1,33 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import IndexPage from "./pages/IndexPage";
+import ProductListPage from "./pages/ProductListPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import AboutPage from "./pages/AboutPage";
 
-function Placeholder({ title }) {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <h1 className="text-3xl font-bold text-gray-800">{title}</h1>
-    </div>
-  );
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Placeholder title="SoftwareICO - Home" />} />
-      <Route path="/products" element={<Placeholder title="Products" />} />
-      <Route path="/products/:slug" element={<Placeholder title="Product Detail" />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<IndexPage />} />
+          <Route path="/products" element={<ProductListPage />} />
+          <Route path="/products/:slug" element={<ProductDetailPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </Layout>
+    </>
   );
 }
