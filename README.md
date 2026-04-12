@@ -307,48 +307,48 @@ If you're coming from Django, here's how to think about the React side:
 
 > **Goal:** A polished landing page with navigation and responsive layout.
 
-- [ ] Set up Tailwind CSS and base theme (colors, fonts, spacing)
-- [ ] Build layout components: `Navbar`, `Footer`, `Container`
-- [ ] Build the Index/Hero page:
+- [X] Set up Tailwind CSS and base theme (colors, fonts, spacing)
+- [X] Build layout components: `Navbar`, `Footer`, `Container`
+- [X] Build the Index/Hero page:
   - Animated hero section with headline and CTA
   - Stats counters (total products, categories, etc.) with count-up animation
   - Featured products carousel/grid
   - Category showcase section
   - Call-to-action / search bar
-- [ ] Add Framer Motion animations (fade-in on scroll, hover effects)
-- [ ] Ensure mobile responsiveness across all sections
+- [X] Add Framer Motion animations (fade-in on scroll, hover effects)
+- [X] Ensure mobile responsiveness across all sections
 
 ### Stage 4: Frontend -- Product List Page
 
 > **Goal:** A fully functional product browsing experience with filters and search.
 
-- [ ] Build the `ProductListPage` with grid/list layout
-- [ ] Build `ProductCard` component (logo, name, tagline, category badge, pricing badge)
-- [ ] Build sidebar/top-bar filter panel:
+- [X] Build the `ProductListPage` with grid/list layout
+- [X] Build `ProductCard` component (logo, name, tagline, category badge, pricing badge)
+- [X] Build sidebar/top-bar filter panel:
   - Category filter (checkboxes or dropdown)
   - Tag filter (multi-select)
   - Pricing type filter
   - Search input (debounced)
-- [ ] Add sort controls (name A-Z, newest, featured first)
-- [ ] Add pagination or infinite scroll
-- [ ] Sync filters with URL query params (so links are shareable)
-- [ ] Add loading skeletons and empty-state messaging
-- [ ] Mobile: collapsible filter panel
+- [X] Add sort controls (name A-Z, newest, featured first)
+- [X] Add pagination or infinite scroll
+- [X] Sync filters with URL query params (so links are shareable)
+- [X] Add loading skeletons and empty-state messaging
+- [X] Mobile: collapsible filter panel
 
 ### Stage 5: Frontend -- Product Detail Page
 
 > **Goal:** A comprehensive product page showing all information.
 
-- [ ] Build the `ProductDetailPage` layout
-- [ ] Product header: logo, name, tagline, category, pricing badge
-- [ ] Description section with rich text rendering
-- [ ] Image gallery (lightbox on click)
-- [ ] Links section (website, demo, docs, video -- each with icon)
-- [ ] Contact information section
-- [ ] Tags display
-- [ ] "Similar products" section at the bottom (same category)
-- [ ] Breadcrumb navigation
-- [ ] Mobile layout adjustments
+- [X] Build the `ProductDetailPage` layout
+- [X] Product header: logo, name, tagline, category, pricing badge
+- [X] Description section with rich text rendering
+- [X] Image gallery (lightbox on click)
+- [X] Links section (website, demo, docs, video -- each with icon)
+- [X] Contact information section
+- [X] Tags display
+- [X] "Similar products" section at the bottom (same category)
+- [X] Breadcrumb navigation
+- [X] Mobile layout adjustments
 
 ### Stage 6: Polish, SEO & Performance
 

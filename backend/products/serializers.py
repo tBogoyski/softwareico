@@ -28,7 +28,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ("id", "name", "slug")
+        fields = ("id", "name", "name_en", "name_bg", "slug")
 
 
 class ProductImageSerializer(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class ProductImageSerializer(serializers.ModelSerializer):
 class ProductLinkSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductLink
-        fields = ("id", "label", "url", "link_type")
+        fields = ("id", "label", "label_en", "label_bg", "url", "link_type")
 
 
 class ProductContactSerializer(serializers.ModelSerializer):

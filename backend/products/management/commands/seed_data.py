@@ -78,21 +78,21 @@ CATEGORIES = [
 ]
 
 TAGS = [
-    {"name": "Transportation", "slug": "transportation"},
-    {"name": "E-commerce", "slug": "e-commerce"},
-    {"name": "AI", "slug": "ai"},
-    {"name": "Automation", "slug": "automation"},
-    {"name": "Bulgarian Language", "slug": "bulgarian-language"},
-    {"name": "Cloud-based", "slug": "cloud-based"},
-    {"name": "On-premise", "slug": "on-premise"},
-    {"name": "Mobile App", "slug": "mobile-app"},
-    {"name": "API Available", "slug": "api-available"},
-    {"name": "Free Trial", "slug": "free-trial"},
-    {"name": "Small Business", "slug": "small-business"},
-    {"name": "Enterprise", "slug": "enterprise"},
-    {"name": "Integration Ready", "slug": "integration-ready"},
-    {"name": "GDPR Compliant", "slug": "gdpr-compliant"},
-    {"name": "Open Source", "slug": "open-source"},
+    {"name_en": "Transportation", "name_bg": "Транспорт", "slug": "transportation"},
+    {"name_en": "E-commerce", "name_bg": "Електронна търговия", "slug": "e-commerce"},
+    {"name_en": "AI", "name_bg": "AI", "slug": "ai"},
+    {"name_en": "Automation", "name_bg": "Автоматизация", "slug": "automation"},
+    {"name_en": "Bulgarian Language", "name_bg": "Български език", "slug": "bulgarian-language"},
+    {"name_en": "Cloud-based", "name_bg": "Облачен", "slug": "cloud-based"},
+    {"name_en": "On-premise", "name_bg": "Локална инсталация", "slug": "on-premise"},
+    {"name_en": "Mobile App", "name_bg": "Мобилно приложение", "slug": "mobile-app"},
+    {"name_en": "API Available", "name_bg": "Достъпно API", "slug": "api-available"},
+    {"name_en": "Free Trial", "name_bg": "Безплатен пробен период", "slug": "free-trial"},
+    {"name_en": "Small Business", "name_bg": "Малък бизнес", "slug": "small-business"},
+    {"name_en": "Enterprise", "name_bg": "Корпоративен", "slug": "enterprise"},
+    {"name_en": "Integration Ready", "name_bg": "Готов за интеграция", "slug": "integration-ready"},
+    {"name_en": "GDPR Compliant", "name_bg": "GDPR съвместим", "slug": "gdpr-compliant"},
+    {"name_en": "Open Source", "name_bg": "Отворен код", "slug": "open-source"},
 ]
 
 PRODUCTS = [
@@ -112,13 +112,13 @@ PRODUCTS = [
         "tag_slugs": ["e-commerce", "bulgarian-language", "cloud-based", "small-business", "free-trial"],
         "is_featured": True,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://cloudcart.com"},
-            {"link_type": "demo", "label": "Try Free Demo", "url": "https://cloudcart.com/demo"},
-            {"link_type": "documentation", "label": "Help Center", "url": "https://help.cloudcart.com"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://cloudcart.com"},
+            {"link_type": "demo", "label_en": "Try Free Demo", "label_bg": "Безплатно демо", "url": "https://cloudcart.com/demo"},
+            {"link_type": "documentation", "label_en": "Help Center", "label_bg": "Помощен център", "url": "https://help.cloudcart.com"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "info@cloudcart.com", "label": "General Inquiries"},
-            {"contact_type": "phone", "value": "+359 2 123 4567", "label": "Sales"},
+            {"contact_type": "email", "value": "info@cloudcart.com", "label": "Общи запитвания"},
+            {"contact_type": "phone", "value": "+359 2 123 4567", "label": "Продажби"},
             {"contact_type": "facebook", "value": "https://facebook.com/cloudcart", "label": "Facebook"},
         ],
     },
@@ -138,11 +138,11 @@ PRODUCTS = [
         "tag_slugs": ["ai", "automation", "bulgarian-language", "cloud-based", "e-commerce", "integration-ready"],
         "is_featured": True,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://chatbot.bg"},
-            {"link_type": "demo", "label": "Live Demo", "url": "https://chatbot.bg/demo"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://chatbot.bg"},
+            {"link_type": "demo", "label_en": "Live Demo", "label_bg": "Демо на живо", "url": "https://chatbot.bg/demo"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "hello@chatbot.bg", "label": "Sales"},
+            {"contact_type": "email", "value": "hello@chatbot.bg", "label": "Продажби"},
             {"contact_type": "linkedin", "value": "https://linkedin.com/company/chatbot-bg", "label": "LinkedIn"},
         ],
     },
@@ -162,12 +162,12 @@ PRODUCTS = [
         "tag_slugs": ["bulgarian-language", "on-premise", "enterprise", "integration-ready"],
         "is_featured": True,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://microinvest.net"},
-            {"link_type": "documentation", "label": "Documentation", "url": "https://microinvest.net/docs"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://microinvest.net"},
+            {"link_type": "documentation", "label_en": "Documentation", "label_bg": "Документация", "url": "https://microinvest.net/docs"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "sales@microinvest.net", "label": "Sales"},
-            {"contact_type": "phone", "value": "+359 2 987 6543", "label": "Support"},
+            {"contact_type": "email", "value": "sales@microinvest.net", "label": "Продажби"},
+            {"contact_type": "phone", "value": "+359 2 987 6543", "label": "Поддръжка"},
         ],
     },
     {
@@ -186,10 +186,10 @@ PRODUCTS = [
         "tag_slugs": ["cloud-based", "small-business", "mobile-app", "free-trial"],
         "is_featured": False,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://planfy.com"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://planfy.com"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "support@planfy.com", "label": "Support"},
+            {"contact_type": "email", "value": "support@planfy.com", "label": "Поддръжка"},
         ],
     },
     {
@@ -208,11 +208,11 @@ PRODUCTS = [
         "tag_slugs": ["cloud-based", "automation", "integration-ready", "enterprise"],
         "is_featured": False,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://omnilinx.com"},
-            {"link_type": "demo", "label": "Request Demo", "url": "https://omnilinx.com/demo"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://omnilinx.com"},
+            {"link_type": "demo", "label_en": "Request Demo", "label_bg": "Заявете демо", "url": "https://omnilinx.com/demo"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "sales@omnilinx.com", "label": "Sales"},
+            {"contact_type": "email", "value": "sales@omnilinx.com", "label": "Продажби"},
             {"contact_type": "linkedin", "value": "https://linkedin.com/company/omnilinx", "label": "LinkedIn"},
         ],
     },
@@ -232,11 +232,11 @@ PRODUCTS = [
         "tag_slugs": ["bulgarian-language", "cloud-based", "small-business", "gdpr-compliant"],
         "is_featured": False,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://plovdev-hr.bg"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://plovdev-hr.bg"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "info@plovdev-hr.bg", "label": "Info"},
-            {"contact_type": "phone", "value": "+359 32 654 321", "label": "Support"},
+            {"contact_type": "email", "value": "info@plovdev-hr.bg", "label": "Информация"},
+            {"contact_type": "phone", "value": "+359 32 654 321", "label": "Поддръжка"},
         ],
     },
     {
@@ -255,11 +255,11 @@ PRODUCTS = [
         "tag_slugs": ["bulgarian-language", "cloud-based", "small-business", "free-trial", "gdpr-compliant"],
         "is_featured": True,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://balkan-accounting.bg"},
-            {"link_type": "documentation", "label": "Knowledge Base", "url": "https://help.balkan-accounting.bg"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://balkan-accounting.bg"},
+            {"link_type": "documentation", "label_en": "Knowledge Base", "label_bg": "База знания", "url": "https://help.balkan-accounting.bg"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "support@balkan-accounting.bg", "label": "Support"},
+            {"contact_type": "email", "value": "support@balkan-accounting.bg", "label": "Поддръжка"},
             {"contact_type": "facebook", "value": "https://facebook.com/balkanaccounting", "label": "Facebook"},
         ],
     },
@@ -279,13 +279,13 @@ PRODUCTS = [
         "tag_slugs": ["transportation", "bulgarian-language", "cloud-based", "mobile-app", "api-available"],
         "is_featured": False,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://logitrack.bg"},
-            {"link_type": "demo", "label": "Book a Demo", "url": "https://logitrack.bg/demo"},
-            {"link_type": "video", "label": "Product Tour", "url": "https://youtube.com/watch?v=logitrack-tour"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://logitrack.bg"},
+            {"link_type": "demo", "label_en": "Book a Demo", "label_bg": "Заявете демо", "url": "https://logitrack.bg/demo"},
+            {"link_type": "video", "label_en": "Product Tour", "label_bg": "Представяне на продукта", "url": "https://youtube.com/watch?v=logitrack-tour"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "sales@logitrack.bg", "label": "Sales"},
-            {"contact_type": "phone", "value": "+359 2 555 1234", "label": "Sales Line"},
+            {"contact_type": "email", "value": "sales@logitrack.bg", "label": "Продажби"},
+            {"contact_type": "phone", "value": "+359 2 555 1234", "label": "Продажби"},
         ],
     },
     {
@@ -304,10 +304,10 @@ PRODUCTS = [
         "tag_slugs": ["automation", "bulgarian-language", "cloud-based", "small-business", "free-trial", "gdpr-compliant"],
         "is_featured": False,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://mailbg.com"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://mailbg.com"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "hello@mailbg.com", "label": "General"},
+            {"contact_type": "email", "value": "hello@mailbg.com", "label": "Общи запитвания"},
         ],
     },
     {
@@ -326,12 +326,12 @@ PRODUCTS = [
         "tag_slugs": ["open-source", "cloud-based", "api-available", "small-business", "integration-ready"],
         "is_featured": False,
         "links": [
-            {"link_type": "website", "label": "Official Website", "url": "https://taskforge.dev"},
-            {"link_type": "github", "label": "GitHub Repository", "url": "https://github.com/taskforge/taskforge"},
-            {"link_type": "documentation", "label": "Docs", "url": "https://docs.taskforge.dev"},
+            {"link_type": "website", "label_en": "Official Website", "label_bg": "Официален уебсайт", "url": "https://taskforge.dev"},
+            {"link_type": "github", "label_en": "GitHub Repository", "label_bg": "GitHub хранилище", "url": "https://github.com/taskforge/taskforge"},
+            {"link_type": "documentation", "label_en": "Docs", "label_bg": "Документация", "url": "https://docs.taskforge.dev"},
         ],
         "contacts": [
-            {"contact_type": "email", "value": "team@taskforge.dev", "label": "Team"},
+            {"contact_type": "email", "value": "team@taskforge.dev", "label": "Екип"},
         ],
     },
 ]
