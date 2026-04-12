@@ -6,7 +6,7 @@ SaaS product directory for the Bulgarian market. Users browse and discover softw
 
 ## Tech Stack
 
-- **Backend:** Django 5 + Django REST Framework, PostgreSQL 16, Redis 7
+- **Backend:** Django 5 + Django REST Framework, PostgreSQL 16, Redis 7, django-modeltranslation
 - **Frontend:** React 18 + Vite, Tailwind CSS, Framer Motion, React Router
 - **Infrastructure:** Docker Compose (all services)
 
@@ -45,6 +45,7 @@ frontend/             # React project
 - Serializers live in `products/serializers.py`
 - Filtering via `django-filter` in `products/filters.py`
 - Admin customization in `products/admin.py` with inlines for related models
+- Translations via `django-modeltranslation` registered in `products/translation.py`
 - API URLs prefixed with `/api/`
 - Media files served from `/media/` in dev
 
@@ -67,7 +68,7 @@ Main models in `products/models.py`:
 - **ProductLink** - external links: website, demo, docs, video (1:N)
 - **ProductContact** - contact info: email, phone, social (1:N)
 
-Fields ending in `_bg` are Bulgarian translations.
+Translatable fields (name, description, tagline, pricing_details) use `django-modeltranslation`, which auto-creates `_en` and `_bg` column variants. Translations are registered in `products/translation.py`.
 
 ## API Endpoints
 
@@ -91,5 +92,5 @@ All env vars are in `.env` (copied from `.env-sample`). Key vars:
 - Django Admin is the only authenticated interface (staff users)
 - No user registration/login in the initial version
 - The frontend owner (Tano) is a backend developer -- keep frontend code well-structured and commented where patterns might be unfamiliar
-- Bulgarian market first -- `_bg` fields exist on models but UI i18n is a future stage
+- Bulgarian market first -- translations managed via `django-modeltranslation` (en/bg), UI language toggle is a future stage
 - Docker Compose is the only supported dev environment -- no local Python/Node setup docs needed

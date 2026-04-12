@@ -6,15 +6,16 @@ A web platform where businesses can discover SaaS products tailored to their ind
 
 ## Tech Stack
 
-| Layer       | Technology                          |
-| ----------- | ----------------------------------- |
-| Backend     | Django 5.x + Django REST Framework  |
-| Frontend    | React 18 + Vite + React Router      |
-| Database    | PostgreSQL 16                       |
-| Cache       | Redis 7 (session cache, API cache)  |
-| Styling     | Tailwind CSS + Framer Motion        |
-| Container   | Docker + Docker Compose             |
-| Admin       | Django Admin (built-in)             |
+| Layer        | Technology                          |
+| ------------ | ----------------------------------- |
+| Backend      | Django 5.x + Django REST Framework  |
+| Frontend     | React 18 + Vite + React Router      |
+| Database     | PostgreSQL 16                       |
+| Cache        | Redis 7 (session cache, API cache)  |
+| Translations | django-modeltranslation (en/bg)     |
+| Styling      | Tailwind CSS + Framer Motion        |
+| Container    | Docker + Docker Compose             |
+| Admin        | Django Admin (built-in)             |
 
 ## Architecture Overview
 
@@ -50,29 +51,25 @@ A web platform where businesses can discover SaaS products tailored to their ind
 │ Category            │       │ Tag                  │
 │─────────────────────│       │─────────────────────│
 │ id (PK)             │       │ id (PK)              │
-│ name                │       │ name                 │
-│ name_bg             │       │ slug                 │
-│ slug                │       └─────────────────────┘
-│ description         │               ▲
-│ description_bg      │               │ M2M
-│ icon                │               │
-│ order               │       ┌───────┴─────────────┐
-└────────┬────────────┘       │ Product              │
-         │ FK                 │───────────────────── │
-         │                    │ id (PK)              │
-         └───────────────────►│ category (FK)        │
-                              │ name                 │
-                              │ name_bg              │
+│ name [T]            │       │ name                 │
+│ slug                │       │ slug                 │
+│ description [T]     │       └─────────────────────┘
+│ icon                │               ▲
+│ order               │               │ M2M
+└────────┬────────────┘               │
+         │ FK                 ┌───────┴─────────────┐
+         │                    │ Product              │
+         └───────────────────►│─────────────────────│
+                              │ id (PK)              │
+                              │ category (FK)        │
+                              │ name [T]             │
                               │ slug                 │
-                              │ tagline              │
-                              │ tagline_bg           │
-                              │ description          │
-                              │ description_bg       │
+                              │ tagline [T]          │
+                              │ description [T]      │
                               │ logo                 │
                               │ website_url          │
                               │ pricing_type         │
-                              │ pricing_details      │
-                              │ pricing_details_bg   │
+                              │ pricing_details [T]  │
                               │ tags (M2M -> Tag)    │
                               │ is_featured          │
                               │ is_active            │
@@ -111,13 +108,15 @@ A web platform where businesses can discover SaaS products tailored to their ind
                               │ value                │
                               │ label                │
                               └─────────────────────┘
+
+[T] = Translated field (django-modeltranslation creates _en and _bg columns automatically)
 ```
 
 ### Key Fields Explained
 
 - **`pricing_type`**: Enum -- `free`, `freemium`, `paid`, `contact_for_pricing`
 - **`is_featured`**: Shown on the hero/index page
-- **`*_bg` fields**: Bulgarian translations (for i18n-ready data)
+- **`[T]` fields**: Managed by `django-modeltranslation` -- each translated field gets `_en` and `_bg` columns (e.g., `name` becomes `name_en`, `name_bg`). The bare field (e.g., `name`) returns the value for the active language with fallback to English.
 - **`link_type`**: Enum -- `website`, `demo`, `documentation`, `video`, `github`
 - **`contact_type`**: Enum -- `email`, `phone`, `facebook`, `linkedin`, `other`
 
@@ -214,6 +213,7 @@ softwareico/
 │   │   └── wsgi.py
 │   ├── products/            # Main app
 │   │   ├── models.py        # Product, Category, Tag, etc.
+│   │   ├── translation.py   # django-modeltranslation registration
 │   │   ├── serializers.py
 │   │   ├── views.py
 │   │   ├── urls.py
@@ -292,16 +292,16 @@ If you're coming from Django, here's how to think about the React side:
 
 > **Goal:** A fully functional API with Django Admin for data management.
 
-- [ ] Define models: `Category`, `Tag`, `Product`, `ProductImage`, `ProductLink`, `ProductContact`
-- [ ] Create and run migrations
-- [ ] Set up Django Admin with inline editors for images, links, contacts
-- [ ] Create DRF serializers for all models
-- [ ] Create API viewsets with list/detail endpoints
-- [ ] Add filtering (by category, tags, pricing type) and search (by name, description)
-- [ ] Add ordering (by name, created date, featured status)
-- [ ] Add pagination to list endpoints
-- [ ] Create a seed data management command with realistic sample products
-- [ ] Test API endpoints manually / write basic tests
+- [X] Define models: `Category`, `Tag`, `Product`, `ProductImage`, `ProductLink`, `ProductContact`
+- [X] Create and run migrations
+- [X] Set up Django Admin with inline editors for images, links, contacts
+- [X] Create DRF serializers for all models
+- [X] Create API viewsets with list/detail endpoints
+- [X] Add filtering (by category, tags, pricing type) and search (by name, description)
+- [X] Add ordering (by name, created date, featured status)
+- [X] Add pagination to list endpoints
+- [X] Create a seed data management command with realistic sample products
+- [X] Test API endpoints manually / write basic tests
 
 ### Stage 3: Frontend -- Layout & Index Page
 
