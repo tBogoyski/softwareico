@@ -281,12 +281,12 @@ If you're coming from Django, here's how to think about the React side:
 
 > **Goal:** Get all services running in Docker with hot-reload for both frontend and backend.
 
-- [ ] Create `docker-compose.yml` with all services (postgres, redis, backend, frontend)
-- [ ] Create backend `Dockerfile` and Django project (`config/` settings)
-- [ ] Create frontend `Dockerfile` and Vite + React project
-- [ ] Configure Django settings (database, CORS, media files, REST framework)
-- [ ] Verify all containers start and talk to each other
-- [ ] Configure `.env` and environment variable handling
+- [X] Create `docker-compose.yml` with all services (postgres, redis, backend, frontend)
+- [X] Create backend `Dockerfile` and Django project (`config/` settings)
+- [X] Create frontend `Dockerfile` and Vite + React project
+- [X] Configure Django settings (database, CORS, media files, REST framework)
+- [X] Verify all containers start and talk to each other
+- [X] Configure `.env` and environment variable handling
 
 ### Stage 2: Backend -- Models, Admin & API
 
