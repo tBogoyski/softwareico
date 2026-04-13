@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
-import { BACKEND_URL } from "../../api/client";
+import { mediaUrl } from "../../api/client";
 
 export default function ImageGallery({ images }) {
   const { t } = useLanguage();
@@ -29,8 +29,9 @@ export default function ImageGallery({ images }) {
             className="group relative aspect-video rounded-xl overflow-hidden bg-gray-100 border border-gray-200 hover:border-primary-300 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             <img
-              src={`${BACKEND_URL}${img.image}`}
+              src={mediaUrl(img.image)}
               alt={img.alt_text || t("detail.productImage")}
+              loading="lazy"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
@@ -81,7 +82,7 @@ export default function ImageGallery({ images }) {
 
             <motion.img
               key={lightboxIndex}
-              src={`${BACKEND_URL}${images[lightboxIndex].image}`}
+              src={mediaUrl(images[lightboxIndex].image)}
               alt={images[lightboxIndex].alt_text || t("detail.productImage")}
               className="max-w-full max-h-[85vh] rounded-lg object-contain"
               initial={{ opacity: 0, scale: 0.95 }}

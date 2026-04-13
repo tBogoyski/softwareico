@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { BACKEND_URL } from "../../api/client";
+import { mediaUrl } from "../../api/client";
 import CategoryIcon from "../ui/CategoryIcon";
 import PricingBadge from "../ui/PricingBadge";
 
@@ -23,8 +23,9 @@ export default function ProductCard({ product, index = 0 }) {
           <div className="flex items-start justify-between gap-3">
             {product.logo ? (
               <img
-                src={`${BACKEND_URL}${product.logo}`}
+                src={mediaUrl(product.logo)}
                 alt={`${product.name} logo`}
+                loading="lazy"
                 className="w-12 h-12 rounded-lg object-contain bg-gray-50 flex-shrink-0"
               />
             ) : (

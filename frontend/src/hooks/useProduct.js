@@ -17,6 +17,7 @@ export default function useProduct(slug) {
 
     setLoading(true);
     setError(null);
+    setData(null);
 
     api
       .get(`/products/${slug}/`)

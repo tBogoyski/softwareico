@@ -93,6 +93,7 @@ const translations = {
     "detail.pricing": "Ценообразуване",
     "detail.status": "Статус",
     "detail.featured": "Препоръчан",
+    "detail.highlights": "Основни характеристики",
     "detail.similarIn": "Подобни продукти в",
     "detail.viewAllIn": "Виж всички в",
     "detail.productImage": "Снимка на продукта",
@@ -139,6 +140,24 @@ const translations = {
     "about.ctaText":
       "Разгледайте нашия каталог и намерете софтуера, който ще ви помогне да развиете бизнеса си.",
     "about.ctaButton": "Разгледай продуктите",
+
+    // SEO
+    "seo.siteName": "Softwareico",
+    "seo.homeTitle": "Softwareico — Каталог на SaaS продукти за българския бизнес",
+    "seo.homeDesc":
+      "Открийте най-добрите SaaS инструменти за вашия бизнес. Подбрана колекция от софтуерни продукти за българския пазар.",
+    "seo.productsTitle": "Продукти — Softwareico",
+    "seo.productsDesc":
+      "Разгледайте нашата колекция от софтуерни продукти. Филтрирайте по категория, ценообразуване и тагове.",
+    "seo.aboutTitle": "За нас — Softwareico",
+    "seo.aboutDesc":
+      "Научете повече за Softwareico и нашата мисия да помогнем на българския бизнес да намери правилните софтуерни решения.",
+
+    // 404
+    "notFound.title": "Страницата не е намерена",
+    "notFound.text": "Страницата, която търсите, не съществува или е била преместена.",
+    "notFound.button": "Обратно към началото",
+    "notFound.seoTitle": "404 — Страницата не е намерена",
   },
 
   en: {
@@ -232,6 +251,7 @@ const translations = {
     "detail.pricing": "Pricing",
     "detail.status": "Status",
     "detail.featured": "Featured",
+    "detail.highlights": "Key Highlights",
     "detail.similarIn": "Similar products in",
     "detail.viewAllIn": "View all in",
     "detail.productImage": "Product image",
@@ -278,6 +298,24 @@ const translations = {
     "about.ctaText":
       "Browse our catalog and find the software that will help you grow your business.",
     "about.ctaButton": "Browse Products",
+
+    // SEO
+    "seo.siteName": "Softwareico",
+    "seo.homeTitle": "Softwareico — SaaS Product Directory for Bulgarian Businesses",
+    "seo.homeDesc":
+      "Discover the best SaaS tools for your business. A curated directory of software products for the Bulgarian market.",
+    "seo.productsTitle": "Products — Softwareico",
+    "seo.productsDesc":
+      "Browse our collection of software products. Filter by category, pricing, and tags.",
+    "seo.aboutTitle": "About Us — Softwareico",
+    "seo.aboutDesc":
+      "Learn more about Softwareico and our mission to help Bulgarian businesses find the right software solutions.",
+
+    // 404
+    "notFound.title": "Page not found",
+    "notFound.text": "The page you're looking for doesn't exist or has been moved.",
+    "notFound.button": "Back to home",
+    "notFound.seoTitle": "404 — Page not found",
   },
 };
 

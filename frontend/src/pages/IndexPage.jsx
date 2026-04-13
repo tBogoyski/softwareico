@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import Seo from "../components/ui/Seo";
 import Button from "../components/ui/Button";
 import SectionHeading from "../components/ui/SectionHeading";
 import StatsCounter from "../components/ui/StatsCounter";
@@ -12,8 +13,15 @@ import useStats from "../hooks/useStats";
 import useCategories from "../hooks/useCategories";
 
 export default function IndexPage() {
+  const { t } = useLanguage();
+
   return (
     <>
+      <Seo
+        title={t("seo.homeTitle")}
+        description={t("seo.homeDesc")}
+        canonical="/"
+      />
       <HeroSection />
       <StatsSection />
       <FeaturedSection />

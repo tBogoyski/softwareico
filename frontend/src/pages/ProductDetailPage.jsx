@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import Seo from "../components/ui/Seo";
 import Breadcrumb from "../components/ui/Breadcrumb";
 import PricingBadge from "../components/ui/PricingBadge";
 import CategoryIcon from "../components/ui/CategoryIcon";
@@ -10,7 +11,7 @@ import ImageGallery from "../components/product/ImageGallery";
 import ProductCard from "../components/product/ProductCard";
 import useProduct from "../hooks/useProduct";
 import useProducts from "../hooks/useProducts";
-import { BACKEND_URL } from "../api/client";
+import { mediaUrl } from "../api/client";
 
 function contactHref(type, value) {
   if (type === "email") return `mailto:${value}`;
@@ -69,8 +70,17 @@ export default function ProductDetailPage() {
   }
   breadcrumbItems.push({ label: product.name });
 
+  const seoImage = mediaUrl(product.logo);
+
   return (
     <>
+      <Seo
+        title={`${product.name} — Softwareico`}
+        description={product.tagline || product.description?.slice(0, 160) || ""}
+        ogImage={seoImage}
+        canonical={`/products/${product.slug}`}
+      />
+
       {/* Colored header band */}
       <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
         <Container className="py-4">
@@ -79,7 +89,7 @@ export default function ProductDetailPage() {
       </section>
 
       {/* Product header */}
-      <section className="bg-white border-b border-gray-200">
+      <section className="bg-gradient-to-b from-primary-50 to-white border-b border-gray-200">
         <Container className="py-8 sm:py-10">
           <motion.div
             className="flex flex-col sm:flex-row gap-6 items-start"
@@ -89,25 +99,23 @@ export default function ProductDetailPage() {
           >
             {product.logo ? (
               <img
-                src={`${BACKEND_URL}${product.logo}`}
+                src={mediaUrl(product.logo)}
                 alt={`${product.name} logo`}
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-contain bg-gray-50 border border-gray-100 flex-shrink-0"
+                loading="lazy"
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-contain bg-white border border-gray-200 shadow-sm flex-shrink-0 p-2"
               />
             ) : (
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-primary-600 font-bold text-3xl">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-primary-100 flex items-center justify-center flex-shrink-0 shadow-sm">
+                <span className="text-primary-600 font-bold text-4xl">
                   {product.name.charAt(0)}
                 </span>
               </div>
             )}
 
             <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-                  {product.name}
-                </h1>
-                <PricingBadge pricingType={product.pricing_type} />
-              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                {product.name}
+              </h1>
 
               {product.tagline && (
                 <p className="mt-2 text-lg text-gray-600">{product.tagline}</p>
@@ -146,6 +154,10 @@ export default function ProductDetailPage() {
                     {t("detail.visitWebsite")}
                   </a>
                 )}
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent-500 text-white text-sm font-semibold rounded-lg">
+                  <i className="fas fa-coins text-xs" aria-hidden="true" />
+                  {t(`pricing.${product.pricing_type}`)}
+                </span>
                 {product.pricing_details && (
                   <span className="inline-flex items-center px-4 py-2.5 bg-accent-50 text-accent-800 text-sm font-medium rounded-lg border border-accent-200">
                     <i className="fas fa-coins mr-2 text-accent-500" aria-hidden="true" />
@@ -159,12 +171,14 @@ export default function ProductDetailPage() {
       </section>
 
       {/* Main content */}
-      <section className="py-8 sm:py-10">
+      <section className="bg-gray-50 py-8 sm:py-10">
         <Container>
           <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-10">
-            <div className="space-y-10">
+            <div className="space-y-8">
+              {/* Description card */}
               {product.description && (
                 <motion.div
+                  className="bg-white rounded-xl border border-gray-200 p-6"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
@@ -179,8 +193,10 @@ export default function ProductDetailPage() {
                 </motion.div>
               )}
 
+              {/* Image gallery card */}
               {product.images?.length > 0 && (
                 <motion.div
+                  className="bg-white rounded-xl border border-gray-200 p-6"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.15 }}
@@ -192,6 +208,7 @@ export default function ProductDetailPage() {
                   <ImageGallery images={product.images} />
                 </motion.div>
               )}
+
             </div>
 
             <motion.div
@@ -267,9 +284,9 @@ export default function ProductDetailPage() {
                           {...extraProps}
                           className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors group"
                         >
-                          <span className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-primary-50 flex items-center justify-center flex-shrink-0 transition-colors">
+                          <span className="w-8 h-8 rounded-lg bg-primary-50 group-hover:bg-primary-100 flex items-center justify-center flex-shrink-0 transition-colors">
                             <i
-                              className={`${meta.icon.startsWith("fa-brands") ? meta.icon : `fas ${meta.icon}`} text-sm text-gray-400 group-hover:text-primary-500`}
+                              className={`${meta.icon.startsWith("fa-brands") ? meta.icon : `fas ${meta.icon}`} text-sm text-primary-500`}
                               aria-hidden="true"
                             />
                           </span>
@@ -288,32 +305,44 @@ export default function ProductDetailPage() {
                 </div>
               )}
 
-              <div className="bg-gray-50 rounded-xl border border-gray-200 p-5">
-                <h3 className="flex items-center gap-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <h3 className="flex items-center gap-2 text-xs font-semibold text-primary-600 uppercase tracking-wider mb-4">
                   <i className="fas fa-info-circle" aria-hidden="true" />
                   {t("detail.info")}
                 </h3>
-                <dl className="space-y-2 text-sm">
+                <div className="space-y-2">
                   {product.category && (
-                    <div className="flex justify-between">
-                      <dt className="text-gray-500">{t("detail.category")}</dt>
-                      <dd className="text-gray-900 font-medium">{product.category.name}</dd>
+                    <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                      <span className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center flex-shrink-0">
+                        <CategoryIcon icon={product.category.icon} className="text-sm text-primary-500" />
+                      </span>
+                      <div>
+                        <div className="text-xs text-gray-400">{t("detail.category")}</div>
+                        <div className="text-sm font-medium">{product.category.name}</div>
+                      </div>
                     </div>
                   )}
-                  <div className="flex justify-between">
-                    <dt className="text-gray-500">{t("detail.pricing")}</dt>
-                    <dd><PricingBadge pricingType={product.pricing_type} /></dd>
+                  <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                    <span className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-tag text-sm text-primary-500" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <div className="text-xs text-gray-400">{t("detail.pricing")}</div>
+                      <div className="text-sm font-medium">{t(`pricing.${product.pricing_type}`)}</div>
+                    </div>
                   </div>
                   {product.is_featured && (
-                    <div className="flex justify-between">
-                      <dt className="text-gray-500">{t("detail.status")}</dt>
-                      <dd className="text-amber-600 font-medium">
-                        <i className="fas fa-star mr-1 text-xs" aria-hidden="true" />
-                        {t("detail.featured")}
-                      </dd>
+                    <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                      <span className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center flex-shrink-0">
+                        <i className="fas fa-star text-sm text-primary-500" aria-hidden="true" />
+                      </span>
+                      <div>
+                        <div className="text-xs text-gray-400">{t("detail.status")}</div>
+                        <div className="text-sm font-medium">{t("detail.featured")}</div>
+                      </div>
                     </div>
                   )}
-                </dl>
+                </div>
               </div>
             </motion.div>
           </div>

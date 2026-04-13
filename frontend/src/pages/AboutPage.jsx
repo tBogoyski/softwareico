@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import Seo from "../components/ui/Seo";
 import Button from "../components/ui/Button";
 import useStats from "../hooks/useStats";
 
@@ -19,6 +20,12 @@ export default function AboutPage() {
 
   return (
     <>
+      <Seo
+        title={t("seo.aboutTitle")}
+        description={t("seo.aboutDesc")}
+        canonical="/about"
+      />
+
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
         <Container className="py-16 sm:py-20 text-center">

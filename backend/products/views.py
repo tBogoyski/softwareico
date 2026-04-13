@@ -2,6 +2,9 @@ from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Count, Q
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
 
 from .models import Category, Tag, Product
 from .serializers import (
@@ -12,7 +15,13 @@ from .serializers import (
 )
 from .filters import ProductFilter
 
+# Cache duration: 5 minutes for list views, 10 minutes for static data
+CACHE_SHORT = 60 * 5
+CACHE_LONG = 60 * 10
 
+
+@method_decorator(cache_page(CACHE_LONG), name="list")
+@method_decorator(vary_on_headers("Accept-Language"), name="list")
 class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """GET /api/categories/ — list all categories with product counts."""
     queryset = Category.objects.annotate(product_count=Count("products", filter=Q(products__is_active=True)))
@@ -20,6 +29,8 @@ class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     pagination_class = None
 
 
+@method_decorator(cache_page(CACHE_LONG), name="list")
+@method_decorator(vary_on_headers("Accept-Language"), name="list")
 class TagViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """GET /api/tags/ — list all tags."""
     queryset = Tag.objects.all()
@@ -27,6 +38,8 @@ class TagViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     pagination_class = None
 
 
+@method_decorator(cache_page(CACHE_SHORT), name="list")
+@method_decorator(vary_on_headers("Accept-Language"), name="list")
 class ProductViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
     GET /api/products/      — list with search, filter, sort, pagination
@@ -52,6 +65,8 @@ class ProductViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.
 
 
 @api_view(["GET"])
+@cache_page(CACHE_LONG)
+@vary_on_headers("Accept-Language")
 def stats_view(request):
     """GET /api/stats/ — aggregate counts for the hero page."""
     return Response({

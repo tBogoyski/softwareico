@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import Seo from "../components/ui/Seo";
 import ProductCard from "../components/product/ProductCard";
 import ProductFilter from "../components/product/ProductFilter";
 import Pagination from "../components/ui/Pagination";
@@ -89,6 +90,12 @@ export default function ProductListPage() {
 
   return (
     <>
+      <Seo
+        title={t("seo.productsTitle")}
+        description={t("seo.productsDesc")}
+        canonical="/products"
+      />
+
       {/* Colorful page header with embedded search */}
       <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
         <Container className="py-10 sm:py-14">

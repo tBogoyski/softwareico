@@ -6,4 +6,19 @@
   body {
     @apply bg-gray-50 text-gray-900 antialiased;
   }
+
+  /* Smooth scrolling for all anchor-based navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus-visible styles for keyboard accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+  }
+
+  /* Skip redundant focus ring on mouse clicks */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
 }

@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 export default function Breadcrumb({ items, variant = "default" }) {
   const isLight = variant === "light";
 
-  const separatorColor = isLight ? "text-white/40" : "text-gray-300";
+  const separatorColor = isLight ? "text-white/60" : "text-gray-300";
   const linkColor = isLight
-    ? "text-white/80 hover:text-white"
+    ? "text-white hover:text-white"
     : "text-primary-600 hover:text-primary-700";
-  const currentColor = isLight ? "text-white/50" : "text-gray-500";
+  const currentColor = isLight ? "text-white/75" : "text-gray-500";
 
   return (
     <nav className="flex items-center gap-2 text-sm" aria-label="Навигация">
