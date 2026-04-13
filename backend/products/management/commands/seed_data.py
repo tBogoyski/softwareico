@@ -1,4 +1,9 @@
+from io import BytesIO
+
+from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
+from PIL import Image, ImageDraw, ImageFont
+
 from products.models import Category, Tag, Product, ProductLink, ProductContact
 
 
@@ -336,6 +341,34 @@ PRODUCTS = [
     },
 ]
 
+LOGO_COLORS = [
+    "#4A90D9",  # blue
+    "#7B68EE",  # medium slate blue
+    "#2ECC71",  # emerald
+    "#F39C12",  # orange
+    "#E74C3C",  # red
+    "#1ABC9C",  # turquoise
+    "#8E44AD",  # purple
+    "#34495E",  # dark blue-grey
+    "#D35400",  # burnt orange
+    "#27AE60",  # green
+]
+
+
+def generate_product_logo(name, color_index):
+    size = 256
+    color = LOGO_COLORS[color_index % len(LOGO_COLORS)]
+    letter = name[0].upper()
+
+    img = Image.new("RGB", (size, size), color)
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.load_default(size=120)
+    draw.text((size / 2, size / 2), letter, fill="white", font=font, anchor="mm")
+
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    return ContentFile(buffer.getvalue())
+
 
 class Command(BaseCommand):
     help = "Seed the database with sample categories, tags, and products"
@@ -379,7 +412,7 @@ class Command(BaseCommand):
             self.stdout.write(f"  {status}: Tag '{tag.name}'")
 
         # Create products
-        for prod_data in PRODUCTS:
+        for idx, prod_data in enumerate(PRODUCTS):
             category_slug = prod_data.pop("category_slug")
             tag_slugs = prod_data.pop("tag_slugs")
             links_data = prod_data.pop("links")
@@ -401,6 +434,11 @@ class Command(BaseCommand):
 
                 for contact in contacts_data:
                     ProductContact.objects.create(product=product, **contact)
+
+            if not product.logo:
+                logo = generate_product_logo(prod_data["name_en"], idx)
+                product.logo.save(f"{product.slug}-logo.png", logo, save=True)
+                self.stdout.write(f"    Generated logo for '{product.name}'")
 
             status = "Created" if created else "Exists"
             self.stdout.write(f"  {status}: Product '{product.name}'")

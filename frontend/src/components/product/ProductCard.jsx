@@ -15,7 +15,7 @@ export default function ProductCard({ product, index = 0 }) {
     >
       <Link
         to={`/products/${product.slug}`}
-        className="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow h-full"
+        className="block bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden hover:shadow-md transition-shadow h-full"
       >
         {/* Card body */}
         <div className="p-5">
@@ -26,10 +26,10 @@ export default function ProductCard({ product, index = 0 }) {
                 src={mediaUrl(product.logo)}
                 alt={`${product.name} logo`}
                 loading="lazy"
-                className="w-12 h-12 rounded-lg object-contain bg-gray-50 flex-shrink-0"
+                className="w-16 h-16 rounded-lg object-contain bg-gray-50 border border-gray-200 flex-shrink-0 p-1"
               />
             ) : (
-              <div className="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0">
                 <span className="text-primary-600 font-bold text-lg">
                   {product.name.charAt(0)}
                 </span>

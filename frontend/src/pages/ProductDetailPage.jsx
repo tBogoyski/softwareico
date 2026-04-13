@@ -102,10 +102,10 @@ export default function ProductDetailPage() {
                 src={mediaUrl(product.logo)}
                 alt={`${product.name} logo`}
                 loading="lazy"
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-contain bg-white border border-gray-200 shadow-sm flex-shrink-0 p-2"
+                className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-contain bg-white border border-gray-300 shadow-sm flex-shrink-0 p-2"
               />
             ) : (
-              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-primary-100 flex items-center justify-center flex-shrink-0 shadow-sm">
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-primary-100 flex items-center justify-center flex-shrink-0 shadow-sm">
                 <span className="text-primary-600 font-bold text-4xl">
                   {product.name.charAt(0)}
                 </span>
