@@ -9,9 +9,7 @@ const translations = {
     "footer.tagline":
       "Открийте най-добрите SaaS инструменти за вашия бизнес. Подбрана колекция от софтуерни продукти за българския пазар.",
     "footer.links": "Бързи връзки",
-    "footer.about": "За нас",
-    "footer.aboutText":
-      "Създаден за българския бизнес. Помагаме на компаниите да намерят правилните софтуерни решения.",
+    "footer.contactUs": "Свържете се с нас",
     "footer.rights": "Всички права запазени.",
 
     // Index page
@@ -73,6 +71,9 @@ const translations = {
     "featured.empty":
       "Все още няма препоръчани продукти. Проверете отново скоро!",
     "featured.viewAll": "Виж всички продукти",
+
+    // Product card
+    "card.featured": "Препоръчан",
 
     // Category card
     "category.productSingular": "продукт",
@@ -141,6 +142,27 @@ const translations = {
       "Разгледайте нашия каталог и намерете софтуера, който ще ви помогне да развиете бизнеса си.",
     "about.ctaButton": "Разгледай продуктите",
 
+    // Contact page
+    "nav.contact": "Контакт",
+    "contact.title": "Свържете се с нас",
+    "contact.heroSubtitle":
+      "Изпратете ни съобщение и ще ви отговорим възможно най-скоро.",
+    "contact.nameLabel": "Име",
+    "contact.namePlaceholder": "Вашето име",
+    "contact.emailLabel": "Имейл",
+    "contact.emailPlaceholder": "Вашият имейл адрес",
+    "contact.phoneLabel": "Телефон (по избор)",
+    "contact.phonePlaceholder": "Телефонен номер",
+    "contact.messageLabel": "Съобщение",
+    "contact.messagePlaceholder": "Напишете вашето съобщение тук...",
+    "contact.submit": "Изпрати съобщение",
+    "contact.sending": "Изпращане...",
+    "contact.successTitle": "Съобщението е изпратено!",
+    "contact.successText":
+      "Благодарим ви за съобщението. Ще се свържем с вас възможно най-скоро.",
+    "contact.errorText": "Възникна грешка при изпращането. Моля, опитайте отново.",
+    "contact.sendAnother": "Изпрати ново съобщение",
+
     // SEO
     "seo.siteName": "Softwareico",
     "seo.homeTitle": "Softwareico — Каталог на SaaS продукти за българския бизнес",
@@ -152,6 +174,9 @@ const translations = {
     "seo.aboutTitle": "За нас — Softwareico",
     "seo.aboutDesc":
       "Научете повече за Softwareico и нашата мисия да помогнем на българския бизнес да намери правилните софтуерни решения.",
+    "seo.contactTitle": "Контакт — Softwareico",
+    "seo.contactDesc":
+      "Свържете се с екипа на Softwareico. Изпратете ни въпрос, предложение или обратна връзка.",
 
     // 404
     "notFound.title": "Страницата не е намерена",
@@ -170,9 +195,7 @@ const translations = {
     "footer.tagline":
       "Discover the best SaaS tools for your business. A curated directory of software products for the Bulgarian market.",
     "footer.links": "Quick Links",
-    "footer.about": "About",
-    "footer.aboutText":
-      "Built for Bulgarian businesses. Helping companies find the right software solutions.",
+    "footer.contactUs": "Contact Us",
     "footer.rights": "All rights reserved.",
 
     // Index page
@@ -193,7 +216,7 @@ const translations = {
     "index.ctaTitle": "Ready to Find Your Next Tool?",
     "index.ctaSubtitle":
       "Explore our full catalog of software products and find the perfect solution for your business needs.",
-    "index.ctaButton": "Browse Products",
+    "index.ctaButton": "Browse products",
 
     // Product list page
     "list.title": "Products",
@@ -231,6 +254,9 @@ const translations = {
     // Featured products
     "featured.empty": "No featured products yet. Check back soon!",
     "featured.viewAll": "View All Products",
+
+    // Product card
+    "card.featured": "Featured",
 
     // Category card
     "category.productSingular": "product",
@@ -299,6 +325,27 @@ const translations = {
       "Browse our catalog and find the software that will help you grow your business.",
     "about.ctaButton": "Browse Products",
 
+    // Contact page
+    "nav.contact": "Contact",
+    "contact.title": "Get in Touch",
+    "contact.heroSubtitle":
+      "Have a question or suggestion? Send us a message and we'll get back to you as soon as possible.",
+    "contact.nameLabel": "Name",
+    "contact.namePlaceholder": "Your name",
+    "contact.emailLabel": "Email",
+    "contact.emailPlaceholder": "Your email address",
+    "contact.phoneLabel": "Phone (optional)",
+    "contact.phonePlaceholder": "Phone number",
+    "contact.messageLabel": "Message",
+    "contact.messagePlaceholder": "Write your message here...",
+    "contact.submit": "Send Message",
+    "contact.sending": "Sending...",
+    "contact.successTitle": "Message Sent!",
+    "contact.successText":
+      "Thank you for reaching out. We'll get back to you as soon as possible.",
+    "contact.errorText": "Something went wrong. Please try again.",
+    "contact.sendAnother": "Send another message",
+
     // SEO
     "seo.siteName": "Softwareico",
     "seo.homeTitle": "Softwareico — SaaS Product Directory for Bulgarian Businesses",
@@ -310,6 +357,9 @@ const translations = {
     "seo.aboutTitle": "About Us — Softwareico",
     "seo.aboutDesc":
       "Learn more about Softwareico and our mission to help Bulgarian businesses find the right software solutions.",
+    "seo.contactTitle": "Contact — Softwareico",
+    "seo.contactDesc":
+      "Get in touch with the Softwareico team. Send us a question, suggestion, or feedback.",
 
     // 404
     "notFound.title": "Page not found",
