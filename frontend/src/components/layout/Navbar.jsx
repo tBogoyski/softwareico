@@ -11,6 +11,7 @@ export default function Navbar() {
     { to: "/", label: t("nav.home"), icon: "fa-house" },
     { to: "/products", label: t("nav.products"), icon: "fa-list" },
     { to: "/about", label: t("nav.about"), icon: "fa-circle-info" },
+    { to: "/contact", label: t("nav.contact"), icon: "fa-envelope" },
   ];
 
   function toggleLanguage() {

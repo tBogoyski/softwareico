@@ -12,10 +12,11 @@ export default function PricingBadge({ pricingType }) {
 
   return (
     <span
-      className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${
+      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${
         styles[pricingType] || styles.free
       }`}
     >
+      <i className="fas fa-coins" aria-hidden="true" />
       {t(`pricing.${pricingType}`) || pricingType}
     </span>
   );

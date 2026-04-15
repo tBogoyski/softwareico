@@ -63,11 +63,11 @@ CATEGORIES = [
         "order": 6,
     },
     {
-        "name_en": "HR & Payroll",
-        "name_bg": "Човешки ресурси и заплати",
-        "slug": "hr-payroll",
-        "description_en": "Human resources and payroll management",
-        "description_bg": "Управление на човешки ресурси и заплати",
+        "name_en": "HR",
+        "name_bg": "Човешки ресурси",
+        "slug": "hr",
+        "description_en": "Human resources",
+        "description_bg": "Човешки ресурси",
         "icon": "fa-id-badge",
         "order": 7,
     },
@@ -437,7 +437,7 @@ class Command(BaseCommand):
 
             if not product.logo:
                 logo = generate_product_logo(prod_data["name_en"], idx)
-                product.logo.save(f"{product.slug}-logo.png", logo, save=True)
+                product.logo.save("logo.png", logo, save=True)
                 self.stdout.write(f"    Generated logo for '{product.name}'")
 
             status = "Created" if created else "Exists"

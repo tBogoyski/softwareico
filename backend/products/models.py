@@ -38,6 +38,15 @@ class Tag(models.Model):
         super().save(*args, **kwargs)
 
 
+def product_logo_path(instance, filename):
+    ext = filename.rsplit(".", 1)[-1] if "." in filename else "png"
+    return f"products/{instance.slug}/logo.{ext}"
+
+
+def product_image_path(instance, filename):
+    return f"products/{instance.product.slug}/{filename}"
+
+
 class Product(models.Model):
     class PricingType(models.TextChoices):
         FREE = "free", "Free"
@@ -56,7 +65,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=220, unique=True)
     tagline = models.CharField(max_length=300, blank=True)
     description = models.TextField(blank=True)
-    logo = models.ImageField(upload_to="products/logos/", blank=True)
+    logo = models.ImageField(upload_to=product_logo_path, blank=True)
     website_url = models.URLField(blank=True)
     pricing_type = models.CharField(
         max_length=20,
@@ -88,7 +97,7 @@ class ProductImage(models.Model):
         on_delete=models.CASCADE,
         related_name="images",
     )
-    image = models.ImageField(upload_to="products/images/")
+    image = models.ImageField(upload_to=product_image_path)
     alt_text = models.CharField(max_length=200, blank=True)
     order = models.PositiveIntegerField(default=0)
 

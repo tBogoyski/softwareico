@@ -47,17 +47,29 @@ export default function Footer() {
                   {t("nav.about")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {t("nav.contact")}
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* About */}
+          {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              {t("footer.about")}
+              {t("footer.contactUs")}
             </h3>
-            <p className="mt-3 text-sm text-gray-400">
-              {t("footer.aboutText")}
-            </p>
+            <a
+              href="mailto:contact@softwareico.com"
+              className="mt-3 inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              <i className="fas fa-envelope text-xs" aria-hidden="true" />
+              contact@softwareico.com
+            </a>
           </div>
         </div>
 
