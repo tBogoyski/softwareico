@@ -296,6 +296,38 @@ If you're coming from Django, here's how to think about the React side:
 | `ordering` | `?ordering=-created_at` | Sort field (prefix `-` for desc) |
 | `page`     | `?page=2`               | Pagination                       |
 
+## Production Deployment
+
+The production setup uses the host nginx as a reverse proxy. Docker runs the backend services (db, redis, gunicorn). The frontend is pre-built as static files served by nginx.
+
+### Deploying Updates
+
+After pushing changes, run on the server:
+
+```bash
+cd /srv/apps/softwareico
+./deploy.sh
+```
+
+This pulls the latest code, rebuilds the frontend, restarts backend services, and runs migrations.
+
+### First-Time Setup
+
+See `deploy.sh` for the deploy steps. Additionally, on first deploy:
+
+```bash
+# Create .env with production values
+cp .env-sample .env
+
+# After running deploy.sh, create the admin user
+docker compose exec backend python manage.py createsuperuser
+
+# Enable nginx config and SSL
+sudo ln -s /srv/apps/softwareico/nginx/softwareico.com /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+sudo certbot --nginx -d softwareico.com -d www.softwareico.com
+```
+
 ## License
 
 Private -- All rights reserved.
