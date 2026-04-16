@@ -8,6 +8,7 @@ __pycache__/
 # Node
 node_modules/
 .vite/
+frontend/dist/
 
 # Django
 backend/media/
