@@ -2,7 +2,7 @@
 
 ## What Is This Project
 
-SaaS product directory for the Bulgarian market. Users browse and discover software products for their business needs. All public pages are accessible without authentication. Data is managed through Django Admin.
+SaaS product directory. Users browse and discover software products for their business needs. All public pages are accessible without authentication. Data is managed through Django Admin.
 
 ## Tech Stack
 
@@ -92,5 +92,4 @@ All env vars are in `.env` (copied from `.env-sample`). Key vars:
 - Django Admin is the only authenticated interface (staff users)
 - No user registration/login in the initial version
 - The frontend owner (Tano) is a backend developer -- keep frontend code well-structured and commented where patterns might be unfamiliar
-- Bulgarian market first -- translations managed via `django-modeltranslation` (en/bg), UI language toggle is a future stage
 - Docker Compose is the only supported dev environment -- no local Python/Node setup docs needed

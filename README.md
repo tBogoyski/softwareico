@@ -1,8 +1,6 @@
-# SoftwareICO - SaaS Product Directory for Bulgarian Businesses
+# SoftwareICO - SaaS Product Directory
 
 A web platform where businesses can discover SaaS products tailored to their industry and problems. Think of it as a curated directory: a transportation company finds their ideal CRM, an OpenCart store owner finds the right AI chatbot integration -- all in one place.
-
-**Target market:** Bulgaria first, then expanding to the rest of the world.
 
 ## Tech Stack
 

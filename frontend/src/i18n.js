@@ -7,7 +7,7 @@ const translations = {
 
     // Footer
     "footer.tagline":
-      "Открийте най-добрите SaaS инструменти за вашия бизнес. Подбрана колекция от софтуерни продукти за българския пазар.",
+      "Открийте най-добрите SaaS инструменти за вашия бизнес. Подбрана колекция от софтуерни продукти.",
     "footer.links": "Бързи връзки",
     "footer.contactUs": "Свържете се с нас",
     "footer.rights": "Всички права запазени.",
@@ -16,7 +16,7 @@ const translations = {
     "index.heroTitle1": "Открийте най-добрия софтуер",
     "index.heroTitle2": "за вашия бизнес",
     "index.heroSubtitle":
-      "Разгледайте нашата подбрана колекция от SaaS продукти, създадени за българския бизнес.",
+      "Разгледайте нашата подбрана колекция от SaaS продукти, създадени за вашия бизнес.",
     "index.searchPlaceholder": "Търсене на продукти...",
     "index.search": "Търсене",
     "index.browseAll": "Разгледай всички продукти",
@@ -124,19 +124,19 @@ const translations = {
     // About page
     "about.title": "За нас",
     "about.heroSubtitle":
-      "Научете повече за Softwareico и нашата мисия да помогнем на българския бизнес да намери правилните софтуерни решения.",
+      "Научете повече за Softwareico и нашата мисия да помогнем на бизнеса да намери правилните софтуерни решения.",
     "about.missionTitle": "Нашата мисия",
     "about.missionText":
-      "Softwareico е създаден с една проста цел — да помогне на българските фирми да открият софтуерните продукти, които наистина отговарят на техните нужди. Вместо да губите часове в търсене и сравняване, ние събираме всичко на едно място: CRM системи, ERP решения, AI чатботове, платформи за електронна търговия, счетоводен софтуер и много други.",
+      "Softwareico е създаден с една проста цел — да помогне на фирмите да открият софтуерните продукти, които наистина отговарят на техните нужди. Вместо да губите часове в търсене и сравняване, ние събираме всичко на едно място: CRM системи, ERP решения, AI чатботове, платформи за електронна търговия, счетоводен софтуер и много други.",
     "about.whyTitle": "Защо Softwareico?",
     "about.whyText":
-      "Българският пазар за бизнес софтуер расте бързо, но информацията е разпръсната. Много качествени български продукти остават непознати, а чуждестранните решения невинаги отговарят на местните изисквания — счетоводни регулации, български език, локални интеграции. Softwareico запълва тази празнина.",
+      "Пазарът за бизнес софтуер расте бързо, но информацията е разпръсната. Много качествени продукти остават непознати, а сравняването на различни решения отнема време. Softwareico запълва тази празнина — събираме всичко на едно място, за да изберете лесно.",
     "about.forWhomTitle": "За кого е Softwareico?",
     "about.forWhomItems":
-      "Малки и средни фирми, които търсят първия си бизнес софтуер|Компании, които искат да сменят текущото си решение с по-добро|IT специалисти, които проучват пазара за своите клиенти|Всеки, който иска да сравни българските софтуерни продукти на едно място",
+      "Фирми, които търсят първия си бизнес софтуер|Компании, които искат да сменят текущото си решение с по-добро|IT специалисти, които проучват пазара за своите клиенти|Всеки, който иска да сравни софтуерни продукти на едно място",
     "about.howTitle": "Как работим?",
     "about.howText":
-      "Нашият екип ръчно подбира и проверява всеки продукт в каталога. Събираме информация за функционалности, ценообразуване, поддръжка на български език и интеграции. Целта ни е да предоставим обективна и актуална информация, за да можете да вземете информирано решение.",
+      "Нашият екип ръчно подбира и проверява всеки продукт в каталога. Събираме информация за функционалности, ценообразуване и интеграции. Целта ни е да предоставим обективна и актуална информация, за да можете да вземете информирано решение.",
     "about.ctaTitle": "Готови ли сте да започнете?",
     "about.ctaText":
       "Разгледайте нашия каталог и намерете софтуера, който ще ви помогне да развиете бизнеса си.",
@@ -165,15 +165,15 @@ const translations = {
 
     // SEO
     "seo.siteName": "Softwareico",
-    "seo.homeTitle": "Softwareico — Каталог на SaaS продукти за българския бизнес",
+    "seo.homeTitle": "Softwareico — Каталог на SaaS продукти за вашия бизнес",
     "seo.homeDesc":
-      "Открийте най-добрите SaaS инструменти за вашия бизнес. Подбрана колекция от софтуерни продукти за българския пазар.",
+      "Открийте най-добрите SaaS инструменти за вашия бизнес. Подбрана колекция от софтуерни продукти.",
     "seo.productsTitle": "Продукти — Softwareico",
     "seo.productsDesc":
       "Разгледайте нашата колекция от софтуерни продукти. Филтрирайте по категория, ценообразуване и тагове.",
     "seo.aboutTitle": "За нас — Softwareico",
     "seo.aboutDesc":
-      "Научете повече за Softwareico и нашата мисия да помогнем на българския бизнес да намери правилните софтуерни решения.",
+      "Научете повече за Softwareico и нашата мисия да помогнем на бизнеса да намери правилните софтуерни решения.",
     "seo.contactTitle": "Контакт — Softwareico",
     "seo.contactDesc":
       "Свържете се с екипа на Softwareico. Изпратете ни въпрос, предложение или обратна връзка.",
@@ -193,7 +193,7 @@ const translations = {
 
     // Footer
     "footer.tagline":
-      "Discover the best SaaS tools for your business. A curated directory of software products for the Bulgarian market.",
+      "Discover the best SaaS tools for your business. A curated directory of software products.",
     "footer.links": "Quick Links",
     "footer.contactUs": "Contact Us",
     "footer.rights": "All rights reserved.",
@@ -202,7 +202,7 @@ const translations = {
     "index.heroTitle1": "Discover the Best Software",
     "index.heroTitle2": "for Your Business",
     "index.heroSubtitle":
-      "Browse our curated directory of SaaS products tailored for Bulgarian businesses.",
+      "Browse our curated directory of SaaS products tailored for your business.",
     "index.searchPlaceholder": "Search products...",
     "index.search": "Search",
     "index.browseAll": "Browse All Products",
@@ -307,19 +307,19 @@ const translations = {
     // About page
     "about.title": "About Us",
     "about.heroSubtitle":
-      "Learn more about Softwareico and our mission to help Bulgarian businesses find the right software solutions.",
+      "Learn more about Softwareico and our mission to help businesses find the right software solutions.",
     "about.missionTitle": "Our Mission",
     "about.missionText":
-      "Softwareico was created with one simple goal — to help Bulgarian businesses discover software products that truly fit their needs. Instead of spending hours searching and comparing, we bring everything together in one place: CRM systems, ERP solutions, AI chatbots, e-commerce platforms, accounting software, and much more.",
+      "Softwareico was created with one simple goal — to help businesses discover software products that truly fit their needs. Instead of spending hours searching and comparing, we bring everything together in one place: CRM systems, ERP solutions, AI chatbots, e-commerce platforms, accounting software, and much more.",
     "about.whyTitle": "Why Softwareico?",
     "about.whyText":
-      "The Bulgarian business software market is growing fast, but information is scattered. Many quality Bulgarian products remain unknown, while foreign solutions don't always meet local requirements — accounting regulations, Bulgarian language support, local integrations. Softwareico fills this gap.",
+      "The business software market is growing fast, but information is scattered. Many quality products remain unknown, and comparing different solutions takes time. Softwareico fills this gap — we bring everything together in one place so you can choose with confidence.",
     "about.forWhomTitle": "Who is Softwareico for?",
     "about.forWhomItems":
-      "Small and medium businesses looking for their first business software|Companies wanting to switch to a better solution|IT professionals researching the market for their clients|Anyone who wants to compare Bulgarian software products in one place",
+      "Businesses looking for their first business software|Companies wanting to switch to a better solution|IT professionals researching the market for their clients|Anyone who wants to compare software products in one place",
     "about.howTitle": "How we work",
     "about.howText":
-      "Our team manually curates and reviews every product in the catalog. We collect information about features, pricing, Bulgarian language support, and integrations. Our goal is to provide objective and up-to-date information so you can make an informed decision.",
+      "Our team manually curates and reviews every product in the catalog. We collect information about features, pricing, and integrations. Our goal is to provide objective and up-to-date information so you can make an informed decision.",
     "about.ctaTitle": "Ready to get started?",
     "about.ctaText":
       "Browse our catalog and find the software that will help you grow your business.",
@@ -348,15 +348,15 @@ const translations = {
 
     // SEO
     "seo.siteName": "Softwareico",
-    "seo.homeTitle": "Softwareico — SaaS Product Directory for Bulgarian Businesses",
+    "seo.homeTitle": "Softwareico — SaaS Product Directory for Your Business",
     "seo.homeDesc":
-      "Discover the best SaaS tools for your business. A curated directory of software products for the Bulgarian market.",
+      "Discover the best SaaS tools for your business. A curated directory of software products.",
     "seo.productsTitle": "Products — Softwareico",
     "seo.productsDesc":
       "Browse our collection of software products. Filter by category, pricing, and tags.",
     "seo.aboutTitle": "About Us — Softwareico",
     "seo.aboutDesc":
-      "Learn more about Softwareico and our mission to help Bulgarian businesses find the right software solutions.",
+      "Learn more about Softwareico and our mission to help businesses find the right software solutions.",
     "seo.contactTitle": "Contact — Softwareico",
     "seo.contactDesc":
       "Get in touch with the Softwareico team. Send us a question, suggestion, or feedback.",
