@@ -19,3 +19,6 @@ backend/media/
 *.swp
 *~
 .DS_Store
+
+# Staticfiles on prod
+backend/staticfiles/

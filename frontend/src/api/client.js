@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const BACKEND_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, "") ||
-  "http://localhost:8000";
+const envApiUrl = import.meta.env.VITE_API_BASE_URL;
+export const BACKEND_URL = envApiUrl != null
+  ? envApiUrl.replace(/\/api\/?$/, "")
+  : "http://localhost:8000";
 
 /**
  * Build a full image URL. Handles both absolute URLs returned by DRF
