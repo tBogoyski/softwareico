@@ -10,8 +10,9 @@ export default function ImageGallery({ images }) {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const touchStartX = useRef(null);
 
+  const isOpen = lightboxIndex !== null;
   useEffect(() => {
-    if (lightboxIndex === null) return;
+    if (!isOpen) return;
     const scrollY = window.scrollY;
     const { body } = document;
     const prev = {
@@ -27,14 +28,18 @@ export default function ImageGallery({ images }) {
     body.style.right = "0";
     body.style.width = "100%";
     return () => {
+      const html = document.documentElement;
+      const prevScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = "auto";
       body.style.position = prev.position;
       body.style.top = prev.top;
       body.style.left = prev.left;
       body.style.right = prev.right;
       body.style.width = prev.width;
       window.scrollTo(0, scrollY);
+      html.style.scrollBehavior = prevScrollBehavior;
     };
-  }, [lightboxIndex]);
+  }, [isOpen]);
 
   if (!images || images.length === 0) return null;
 
