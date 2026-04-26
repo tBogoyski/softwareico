@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 import { mediaUrl } from "../../api/client";
 
+const SWIPE_THRESHOLD = 50;
+
 export default function ImageGallery({ images }) {
   const { t } = useLanguage();
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const touchStartX = useRef(null);
 
   if (!images || images.length === 0) return null;
 
@@ -17,6 +20,18 @@ export default function ImageGallery({ images }) {
     if (index < 0) index = images.length - 1;
     if (index >= images.length) index = 0;
     setLightboxIndex(index);
+  }
+
+  function handleTouchStart(e) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e) {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || images.length <= 1) return;
+    goTo(lightboxIndex + (deltaX < 0 ? 1 : -1));
   }
 
   return (
@@ -51,11 +66,12 @@ export default function ImageGallery({ images }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={closeLightbox}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
               aria-label={t("detail.close")}
             >
               <i className="fas fa-xmark text-xl" aria-hidden="true" />
@@ -64,15 +80,15 @@ export default function ImageGallery({ images }) {
             {images.length > 1 && (
               <>
                 <button
-                  onClick={(e) => { e.stopPropagation(); goTo(lightboxIndex - 1); }}
-                  className="absolute left-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  onClick={() => goTo(lightboxIndex - 1)}
+                  className="absolute left-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
                   aria-label={t("detail.prevImage")}
                 >
                   <i className="fas fa-chevron-left" aria-hidden="true" />
                 </button>
                 <button
-                  onClick={(e) => { e.stopPropagation(); goTo(lightboxIndex + 1); }}
-                  className="absolute right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  onClick={() => goTo(lightboxIndex + 1)}
+                  className="absolute right-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
                   aria-label={t("detail.nextImage")}
                 >
                   <i className="fas fa-chevron-right" aria-hidden="true" />
@@ -84,12 +100,12 @@ export default function ImageGallery({ images }) {
               key={lightboxIndex}
               src={mediaUrl(images[lightboxIndex].image)}
               alt={images[lightboxIndex].alt_text || t("detail.productImage")}
-              className="max-w-full max-h-[85vh] rounded-lg object-contain"
+              className="max-w-full max-h-[85vh] rounded-lg object-contain select-none touch-pan-y"
+              draggable={false}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              onClick={(e) => e.stopPropagation()}
             />
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
