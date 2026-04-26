@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 import { mediaUrl } from "../../api/client";
@@ -9,6 +9,32 @@ export default function ImageGallery({ images }) {
   const { t } = useLanguage();
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const touchStartX = useRef(null);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const scrollY = window.scrollY;
+    const { body } = document;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    return () => {
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.width = prev.width;
+      window.scrollTo(0, scrollY);
+    };
+  }, [lightboxIndex]);
 
   if (!images || images.length === 0) return null;
 
@@ -62,7 +88,7 @@ export default function ImageGallery({ images }) {
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 p-4 gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -71,36 +97,17 @@ export default function ImageGallery({ images }) {
           >
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
+              className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
               aria-label={t("detail.close")}
             >
               <i className="fas fa-xmark text-xl" aria-hidden="true" />
             </button>
 
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={() => goTo(lightboxIndex - 1)}
-                  className="absolute left-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
-                  aria-label={t("detail.prevImage")}
-                >
-                  <i className="fas fa-chevron-left" aria-hidden="true" />
-                </button>
-                <button
-                  onClick={() => goTo(lightboxIndex + 1)}
-                  className="absolute right-4 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
-                  aria-label={t("detail.nextImage")}
-                >
-                  <i className="fas fa-chevron-right" aria-hidden="true" />
-                </button>
-              </>
-            )}
-
             <motion.img
               key={lightboxIndex}
               src={mediaUrl(images[lightboxIndex].image)}
               alt={images[lightboxIndex].alt_text || t("detail.productImage")}
-              className="max-w-full max-h-[85vh] rounded-lg object-contain select-none touch-pan-y"
+              className="max-w-full max-h-[75vh] rounded-lg object-contain select-none touch-pan-y"
               draggable={false}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -108,8 +115,30 @@ export default function ImageGallery({ images }) {
               transition={{ duration: 0.2 }}
             />
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
-              {lightboxIndex + 1} / {images.length}
+            <div className="flex items-center gap-4">
+              {images.length > 1 && (
+                <button
+                  onClick={() => goTo(lightboxIndex - 1)}
+                  className="w-11 h-11 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
+                  aria-label={t("detail.prevImage")}
+                >
+                  <i className="fas fa-chevron-left" aria-hidden="true" />
+                </button>
+              )}
+
+              <div className="text-white/80 text-sm tabular-nums min-w-[3rem] text-center">
+                {lightboxIndex + 1} / {images.length}
+              </div>
+
+              {images.length > 1 && (
+                <button
+                  onClick={() => goTo(lightboxIndex + 1)}
+                  className="w-11 h-11 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white ring-1 ring-white/30 shadow-lg transition-colors"
+                  aria-label={t("detail.nextImage")}
+                >
+                  <i className="fas fa-chevron-right" aria-hidden="true" />
+                </button>
+              )}
             </div>
           </motion.div>
         )}
