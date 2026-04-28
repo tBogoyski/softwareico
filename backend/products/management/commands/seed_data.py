@@ -102,8 +102,7 @@ TAGS = [
 
 PRODUCTS = [
     {
-        "name_en": "CloudCart",
-        "name_bg": "КлаудКарт",
+        "name": "CloudCart",
         "slug": "cloudcart",
         "tagline_en": "The Bulgarian e-commerce platform built for growth",
         "tagline_bg": "Българската платформа за електронна търговия, създадена за растеж",
@@ -128,8 +127,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "Chatbot.bg",
-        "name_bg": "Chatbot.bg",
+        "name": "Chatbot.bg",
         "slug": "chatbot-bg",
         "tagline_en": "AI-powered customer support for Bulgarian businesses",
         "tagline_bg": "AI базирана клиентска поддръжка за български бизнеси",
@@ -152,8 +150,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "Microinvest",
-        "name_bg": "Микроинвест",
+        "name": "Microinvest",
         "slug": "microinvest",
         "tagline_en": "Complete ERP and accounting for Bulgarian enterprises",
         "tagline_bg": "Цялостна ERP и счетоводна система за български предприятия",
@@ -176,8 +173,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "Planfy",
-        "name_bg": "Planfy",
+        "name": "Planfy",
         "slug": "planfy",
         "tagline_en": "Smart scheduling for service businesses",
         "tagline_bg": "Интелигентно планиране за бизнеси с услуги",
@@ -198,8 +194,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "Omnilinx",
-        "name_bg": "Omnilinx",
+        "name": "Omnilinx",
         "slug": "omnilinx",
         "tagline_en": "Omnichannel communication platform",
         "tagline_bg": "Омниканална комуникационна платформа",
@@ -222,8 +217,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "Plovdev HR",
-        "name_bg": "Пловдев HR",
+        "name": "Plovdev HR",
         "slug": "plovdev-hr",
         "tagline_en": "HR and payroll management made easy",
         "tagline_bg": "Лесно управление на човешки ресурси и заплати",
@@ -245,8 +239,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "Balkan Accounting Online",
-        "name_bg": "Балкан Счетоводство Онлайн",
+        "name": "Balkan Accounting Online",
         "slug": "balkan-accounting-online",
         "tagline_en": "Cloud accounting built for Bulgarian regulations",
         "tagline_bg": "Облачно счетоводство, създадено за българските регулации",
@@ -269,8 +262,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "LogiTrack",
-        "name_bg": "ЛогиТрак",
+        "name": "LogiTrack",
         "slug": "logitrack",
         "tagline_en": "Fleet management and logistics for transport companies",
         "tagline_bg": "Управление на автопарк и логистика за транспортни компании",
@@ -294,8 +286,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "MailBG",
-        "name_bg": "МейлБГ",
+        "name": "MailBG",
         "slug": "mailbg",
         "tagline_en": "Email marketing made simple for Bulgarian businesses",
         "tagline_bg": "Лесен имейл маркетинг за български бизнеси",
@@ -316,8 +307,7 @@ PRODUCTS = [
         ],
     },
     {
-        "name_en": "TaskForge",
-        "name_bg": "ТаскФордж",
+        "name": "TaskForge",
         "slug": "taskforge",
         "tagline_en": "Open-source project management for dev teams",
         "tagline_bg": "Проджект мениджмънт с отворен код за екипи от разработчици",
@@ -436,7 +426,7 @@ class Command(BaseCommand):
                     ProductContact.objects.create(product=product, **contact)
 
             if not product.logo:
-                logo = generate_product_logo(prod_data["name_en"], idx)
+                logo = generate_product_logo(prod_data["name"], idx)
                 product.logo.save("logo.png", logo, save=True)
                 self.stdout.write(f"    Generated logo for '{product.name}'")
 

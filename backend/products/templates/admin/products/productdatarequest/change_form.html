@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+{{ block.super }}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var statusFieldset = document.querySelector('.pdr-status-fieldset');
+    var submitRow = document.querySelector('.submit-row');
+    if (statusFieldset && submitRow) {
+        submitRow.parentNode.insertBefore(statusFieldset, submitRow);
+        statusFieldset.style.marginBottom = '0';
+        statusFieldset.style.borderBottom = 'none';
+    }
+});
+</script>
+{% endblock %}
