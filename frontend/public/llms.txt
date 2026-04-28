@@ -1,6 +1,6 @@
 # SoftwareICO
 
-> SoftwareICO is a curated directory of SaaS products that helps businesses discover software tailored to their industry and problems -- from CRMs and ERPs to AI chatbots and e-commerce integrations.
+> SoftwareICO is a curated directory of software products that helps businesses and individuals discover software tailored to their needs -- from CRMs and ERPs to AI chatbots and e-commerce integrations.
 
 Product listings are available in English and Bulgarian and include descriptions, pricing, categories, and tags.
 
