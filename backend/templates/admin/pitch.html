@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<title>SoftwareICO — {{ t.deck_label }}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  @page { size: A4; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e1b4b;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 5mm 20mm 18mm;
+    page-break-after: always;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .logo { display: flex; align-items: center; }
+  .logo .logo-name { margin-left: 14px; }
+  .logo-mark { width: 32px; height: 32px; display: block; }
+  .logo-name {
+    font-weight: 800; font-size: 16px;
+    letter-spacing: -0.01em; color: #1e1b4b;
+  }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: center;
+    min-height: 36px;
+    padding: 6px 0 12px;
+    border-bottom: 1px solid #e0e7ff;
+    margin-bottom: 10px;
+  }
+  .page-header .step {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: #6366f1;
+  }
+
+  .page-footer {
+    position: absolute;
+    left: 20mm; right: 20mm; bottom: 7mm;
+    padding-top: 10px;
+    border-top: 1px solid #e0e7ff;
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: #6b7280;
+  }
+  .page-footer .num { font-weight: 600; color: #f59e0b; }
+
+  h1, h2, h3 { color: #1e1b4b; letter-spacing: -0.02em; }
+  h1 { font-size: 56px; font-weight: 800; line-height: 1.05; }
+  h2 { font-size: 38px; font-weight: 700; line-height: 1.1; margin-bottom: 14px; }
+  h3 { font-size: 18px; font-weight: 600; line-height: 1.3; }
+
+  p { font-size: 14px; line-height: 1.65; color: #374151; }
+  p.lead { font-size: 17px; line-height: 1.6; color: #1f2937; }
+
+  .accent-bar {
+    width: 56px; height: 4px;
+    background: #f59e0b; border-radius: 2px;
+    margin-bottom: 22px;
+  }
+
+  .cover {
+    background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #4f46e5 100%);
+    color: #ffffff;
+    padding: 5mm 22mm 22mm;
+  }
+  .cover .cover-body { margin-top: 28px; }
+  .cover .cover-foot {
+    position: absolute;
+    left: 22mm; right: 22mm; bottom: 14mm;
+  }
+  .cover .logo-name { color: #ffffff; }
+  .cover h1 { color: #ffffff; max-width: 16ch; }
+  .cover .tagline {
+    font-size: 18px; color: #c7d2fe;
+    margin-top: 18px; max-width: 50ch; line-height: 1.55;
+  }
+  .cover .cover-foot {
+    display: flex; justify-content: space-between; align-items: end;
+    color: #c7d2fe; font-size: 12px;
+  }
+  .cover .cover-foot strong { color: #fbbf24; font-weight: 600; }
+  .cover .deck-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em;
+    color: #fbbf24; font-weight: 600; margin-bottom: 14px;
+  }
+
+  .benefit-list { list-style: none; margin-top: 8px; }
+  .benefit-list li {
+    padding: 14px 0; border-bottom: 1px solid #f3f4f6;
+    display: flex; align-items: flex-start;
+  }
+  .benefit-list .body { margin-left: 16px; }
+  .benefit-list li:last-child { border-bottom: 0; }
+  .benefit-list .marker {
+    flex: 0 0 28px; height: 28px; border-radius: 6px;
+    background: #eef2ff; color: #4f46e5;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .benefit-list .body { flex: 1; }
+  .benefit-list .title {
+    font-size: 14px; font-weight: 600; color: #1e1b4b; margin-bottom: 3px;
+  }
+  .benefit-list .desc {
+    font-size: 12.5px; color: #4b5563; line-height: 1.55;
+  }
+
+  .steps { margin-top: 20px; }
+  .step-row {
+    display: flex; align-items: flex-start;
+    padding: 22px 0; border-bottom: 1px solid #f3f4f6;
+  }
+  .step-row:last-child { border-bottom: 0; }
+  .step-row > div + div { margin-left: 22px; }
+  .step-num {
+    flex: 0 0 64px; font-size: 36px; font-weight: 800;
+    color: #f59e0b; line-height: 1;
+  }
+  .step-title { font-size: 17px; font-weight: 600; color: #1e1b4b; margin-bottom: 4px; }
+  .step-desc  { font-size: 13px; color: #4b5563; line-height: 1.6; }
+
+  .audience-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 18px;
+  }
+  .audience-card {
+    background: #f9fafb; border: 1px solid #e5e7eb;
+    border-left: 3px solid #4f46e5; border-radius: 4px;
+    padding: 20px 18px 20px;
+  }
+  .audience-card h3 { font-size: 14px; margin-bottom: 4px; }
+  .audience-card p  { font-size: 12px; color: #6b7280; line-height: 1.5; }
+
+  .split {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 22px;
+  }
+  .split-card {
+    background: #fafafa; border-radius: 6px;
+    padding: 28px 22px 28px; border-top: 3px solid #f59e0b;
+  }
+  .split-card h3 { margin-bottom: 8px; }
+  .split-card p  { font-size: 13px; }
+
+  .pricing-card {
+    margin-top: 24px;
+    background: linear-gradient(135deg, #eef2ff 0%, #fffbeb 100%);
+    border: 1px solid #e0e7ff; border-radius: 8px;
+    padding: 30px;
+  }
+  .pricing-card .tier {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #6366f1; font-weight: 600;
+  }
+  .pricing-card .price {
+    font-size: 42px; font-weight: 800; color: #4f46e5;
+    margin: 6px 0 4px; letter-spacing: -0.02em;
+  }
+  .pricing-card .price small {
+    font-size: 14px; color: #6b7280; font-weight: 500;
+  }
+  .pricing-card .note {
+    font-size: 13px; color: #4b5563; line-height: 1.6; margin-top: 6px;
+  }
+  .pricing-footnote {
+    margin-top: 22px; font-size: 12px; color: #6b7280;
+  }
+
+  .contact {
+    background: #1e1b4b; color: #ffffff;
+    padding: 5mm 22mm 22mm;
+  }
+  .contact .logo-name { color: #ffffff; }
+  .contact h2 { color: #ffffff; }
+  .contact .accent-bar { background: #fbbf24; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 28px;
+  }
+  .contact-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 6px; padding: 18px 20px;
+  }
+  .contact-item .label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: #fbbf24; font-weight: 600; margin-bottom: 6px;
+  }
+  .contact-item .value {
+    font-size: 15px; color: #ffffff; font-weight: 500; word-break: break-all;
+  }
+  .contact .lead-on-dark {
+    color: #c7d2fe; font-size: 16px;
+    margin-top: 14px; max-width: 50ch; line-height: 1.6;
+  }
+  .contact .closing {
+    margin-top: 36px; padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 13px; color: #c7d2fe; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER -->
+<section class="page cover">
+  <div>
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+  </div>
+
+  <div class="cover-body">
+    <div class="deck-label">{{ t.deck_label }}</div>
+    <h1>{{ t.cover_h1 }}</h1>
+    <p class="tagline">{{ t.cover_tagline }}</p>
+  </div>
+
+  <div class="cover-foot">
+    <div>{{ frontend_origin }}</div>
+    <div>{{ t.for_vendors|safe }}</div>
+  </div>
+</section>
+
+<!-- 2. PROBLEM -->
+<section class="page">
+  <div class="page-header">
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+    <div class="step">{{ t.step_01 }}</div>
+  </div>
+
+  <h2>{{ t.problem_h2 }}</h2>
+  <p class="lead">{{ t.problem_lead }}</p>
+
+  <div class="split">
+    <div class="split-card">
+      <h3>{{ t.problem_buyers_h }}</h3>
+      <p>{{ t.problem_buyers_p }}</p>
+    </div>
+    <div class="split-card">
+      <h3>{{ t.problem_vendors_h }}</h3>
+      <p>{{ t.problem_vendors_p }}</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>{{ t.header_label }}</span>
+    <span class="num">01</span>
+  </div>
+</section>
+
+<!-- 3. WHAT IT IS -->
+<section class="page">
+  <div class="page-header">
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+    <div class="step">{{ t.step_02 }}</div>
+  </div>
+
+  <h2>{{ t.what_h2 }}</h2>
+  <p class="lead">{{ t.what_lead }}</p>
+  <br>
+  <p>{{ t.what_p2 }}</p>
+  <br>
+  <p>{{ t.what_p3 }}</p>
+
+  <div class="page-footer">
+    <span>{{ t.header_label }}</span>
+    <span class="num">02</span>
+  </div>
+</section>
+
+<!-- 4. AUDIENCE -->
+<section class="page">
+  <div class="page-header">
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+    <div class="step">{{ t.step_03 }}</div>
+  </div>
+
+  <h2>{{ t.audience_h2 }}</h2>
+  <p class="lead">{{ t.audience_lead }}</p>
+
+  <div class="audience-grid">
+    <div class="audience-card">
+      <h3>{{ t.audience_1_h }}</h3>
+      <p>{{ t.audience_1_p }}</p>
+    </div>
+    <div class="audience-card">
+      <h3>{{ t.audience_2_h }}</h3>
+      <p>{{ t.audience_2_p }}</p>
+    </div>
+    <div class="audience-card">
+      <h3>{{ t.audience_3_h }}</h3>
+      <p>{{ t.audience_3_p }}</p>
+    </div>
+    <div class="audience-card">
+      <h3>{{ t.audience_4_h|safe }}</h3>
+      <p>{{ t.audience_4_p }}</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>{{ t.header_label }}</span>
+    <span class="num">03</span>
+  </div>
+</section>
+
+<!-- 5. BENEFITS -->
+<section class="page">
+  <div class="page-header">
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+    <div class="step">{{ t.step_04 }}</div>
+  </div>
+
+  <h2>{{ t.benefits_h2 }}</h2>
+
+  <ul class="benefit-list">
+    <li>
+      <div class="marker">01</div>
+      <div class="body">
+        <div class="title">{{ t.benefit_1_t }}</div>
+        <div class="desc">{{ t.benefit_1_d }}</div>
+      </div>
+    </li>
+    <li>
+      <div class="marker">02</div>
+      <div class="body">
+        <div class="title">{{ t.benefit_2_t }}</div>
+        <div class="desc">{{ t.benefit_2_d }}</div>
+      </div>
+    </li>
+    <li>
+      <div class="marker">03</div>
+      <div class="body">
+        <div class="title">{{ t.benefit_3_t }}</div>
+        <div class="desc">{{ t.benefit_3_d }}</div>
+      </div>
+    </li>
+    <li>
+      <div class="marker">04</div>
+      <div class="body">
+        <div class="title">{{ t.benefit_4_t }}</div>
+        <div class="desc">{{ t.benefit_4_d }}</div>
+      </div>
+    </li>
+    <li>
+      <div class="marker">05</div>
+      <div class="body">
+        <div class="title">{{ t.benefit_5_t }}</div>
+        <div class="desc">{{ t.benefit_5_d }}</div>
+      </div>
+    </li>
+    <li>
+      <div class="marker">06</div>
+      <div class="body">
+        <div class="title">{{ t.benefit_6_t }}</div>
+        <div class="desc">{{ t.benefit_6_d }}</div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="page-footer">
+    <span>{{ t.header_label }}</span>
+    <span class="num">04</span>
+  </div>
+</section>
+
+<!-- 6. HOW IT WORKS -->
+<section class="page">
+  <div class="page-header">
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+    <div class="step">{{ t.step_05 }}</div>
+  </div>
+
+  <h2>{{ t.how_h2 }}</h2>
+  <p class="lead">{{ t.how_lead }}</p>
+
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">{{ t.how_1_t }}</div>
+        <div class="step-desc">{{ t.how_1_d }}</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">{{ t.how_2_t }}</div>
+        <div class="step-desc">{{ t.how_2_d }}</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">{{ t.how_3_t }}</div>
+        <div class="step-desc">{{ t.how_3_d }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>{{ t.header_label }}</span>
+    <span class="num">05</span>
+  </div>
+</section>
+
+<!-- 7. PRICING -->
+<section class="page">
+  <div class="page-header">
+    <div class="logo">
+      <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+      <div class="logo-name">SoftwareICO</div>
+    </div>
+    <div class="step">{{ t.step_06 }}</div>
+  </div>
+
+  <h2>{{ t.pricing_h2 }}</h2>
+  <p class="lead">{{ t.pricing_lead }}</p>
+
+  <div class="pricing-card">
+    <div class="tier">{{ t.pricing_tier }}</div>
+    <div class="price">{{ t.pricing_price }} <small>{{ t.pricing_price_sub }}</small></div>
+    <p class="note">{{ t.pricing_note }}</p>
+  </div>
+
+  <p class="pricing-footnote">{{ t.pricing_footnote }}</p>
+
+  <div class="page-footer">
+    <span>{{ t.header_label }}</span>
+    <span class="num">06</span>
+  </div>
+</section>
+
+<!-- 8. CONTACT -->
+<section class="page contact">
+  <div class="logo">
+    <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#4f46e5"/><g transform="translate(16,16) scale(0.75)" fill="#ffffff"><rect x="-9" y="-9" width="7" height="7" rx="1"/><rect x="2" y="-9" width="7" height="7" rx="1"/><rect x="-9" y="2" width="7" height="7" rx="1"/><rect x="2" y="2" width="7" height="7" rx="1"/></g></svg>
+    <div class="logo-name">SoftwareICO</div>
+  </div>
+
+  <div style="margin-top: 50px;">
+    <div class="accent-bar"></div>
+    <h2>{{ t.contact_h2 }}</h2>
+    <p class="lead-on-dark">{{ t.contact_lead }}</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="label">{{ t.contact_label_email }}</div>
+      <div class="value">contact@softwareico.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">{{ t.contact_label_web }}</div>
+      <div class="value">{{ frontend_origin }}</div>
+    </div>
+  </div>
+
+  <div class="closing">{{ t.contact_closing }}</div>
+</section>
+
+</body>
+</html>

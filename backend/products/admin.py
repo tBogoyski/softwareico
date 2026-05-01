@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.contrib import admin
+from django.urls import path
 from django.utils.html import format_html
 from modeltranslation.admin import TabbedTranslationAdmin
+from .admin_views import download_pitch_pdf
 from .models import (
     Category,
     Tag,
@@ -165,3 +167,20 @@ class ProductDataRequestAdmin(TabbedTranslationAdmin):
             "classes": ("pdr-status-fieldset",),
         }),
     )
+
+
+_original_get_urls = admin.site.get_urls
+
+
+def _patched_get_urls():
+    extra = [
+        path(
+            "pitch/download/<str:lang>/",
+            admin.site.admin_view(download_pitch_pdf),
+            name="download_pitch_pdf",
+        ),
+    ]
+    return extra + _original_get_urls()
+
+
+admin.site.get_urls = _patched_get_urls

@@ -1,0 +1,79 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}
+{% if user.is_authenticated and user.is_staff %}
+  <style>
+    .pitch-dropdown {
+      position: relative;
+      display: inline-block;
+      margin-right: 12px;
+    }
+    .pitch-dropdown > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      user-select: none;
+    }
+    .pitch-dropdown > summary::-webkit-details-marker { display: none; }
+    .pitch-dropdown > summary::after {
+      content: ' \25BE';
+      font-size: 10px;
+      opacity: 0.8;
+    }
+    .pitch-dropdown[open] > summary {
+      background: rgba(255, 255, 255, 0.22);
+    }
+    .pitch-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      min-width: 180px;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      padding: 4px 0;
+      z-index: 100;
+    }
+    .pitch-dropdown-menu a,
+    .pitch-dropdown-menu a:link,
+    .pitch-dropdown-menu a:visited {
+      display: block;
+      padding: 8px 16px;
+      color: #1f2937 !important;
+      text-decoration: none !important;
+      font-size: 13px;
+      font-weight: 500;
+      background: transparent;
+    }
+    .pitch-dropdown-menu a:hover {
+      background: #eef2ff !important;
+      color: #4f46e5 !important;
+    }
+  </style>
+  <div style="float: right; padding: 4px 12px;">
+    <details class="pitch-dropdown">
+      <summary>{% trans 'Download pitch PDF' %}</summary>
+      <div class="pitch-dropdown-menu">
+        <a href="{% url 'admin:download_pitch_pdf' lang='en' %}">{% trans 'English version' %}</a>
+        <a href="{% url 'admin:download_pitch_pdf' lang='bg' %}">{% trans 'Bulgarian version' %}</a>
+      </div>
+    </details>
+  </div>
+{% endif %}
+{% endblock %}
