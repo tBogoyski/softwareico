@@ -13,7 +13,7 @@ docker cp temp-frontend:/app/dist/. ./frontend/dist/
 docker rm temp-frontend
 
 echo "Starting backend services..."
-docker compose up -d --build
+docker compose up -d --build db redis backend
 
 echo "Running migrations..."
 docker compose exec backend python manage.py migrate
