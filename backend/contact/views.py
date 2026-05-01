@@ -1,11 +1,15 @@
+import logging
+
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .serializers import ContactSerializer
+
+logger = logging.getLogger(__name__)
 
 
 @api_view(["POST"])
@@ -25,18 +29,20 @@ def contact_view(request):
     message = validated_data["message"]
 
     try:
-        send_mail(
+        EmailMessage(
             subject=f"Ново съобщение от {name}",
-            message=(
+            body=(
                 f"Име: {name}\n"
                 f"Имейл: {email}\n"
                 f"Телефон: {phone}\n"
                 f"Съобщение: {message}"
             ),
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.CONTACT_EMAIL_TO],
-        )
+            to=[settings.CONTACT_EMAIL_TO],
+            reply_to=[email],
+        ).send()
     except Exception:
+        logger.exception("Contact form send_mail failed")
         return Response(
             {"detail": "Failed to send message. Please try again later."},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
