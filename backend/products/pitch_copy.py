@@ -16,17 +16,17 @@ COPY = {
 
         "step_01": "01 · The problem",
         "problem_h2": "Buyers and vendors are looking past each other.",
-        "problem_lead": "Software discovery is broken on both sides of the table — and most of the budget gets spent in the gap between them.",
+        "problem_lead": "Software discovery is hard for both — and most of the budget gets spent in the gap between them.",
         "problem_buyers_h": "Buyers waste weeks comparing tools.",
         "problem_buyers_p": "Search engines surface ads. Review sites push the highest bidder. Decision-makers end up reading 30 tabs to evaluate 3 options — and still feel uncertain.",
         "problem_vendors_h": "Vendors burn budget on cold ads.",
         "problem_vendors_p": "Paid acquisition reaches people who weren't searching. CPLs climb every quarter. The buyers who would have been a good fit never see the product.",
 
         "step_02": "02 · What SoftwareICO is",
-        "what_h2": "A curated, bilingual directory of business software.",
+        "what_h2": "A carefully selected, bilingual directory for software products.",
         "what_lead": "SoftwareICO organizes SaaS tools by category — CRM, ERP, AI chatbots, analytics, and more — so buyers can compare options side-by-side instead of stitching together search results.",
         "what_p2": "Every product gets a real, structured page: tagline, description, screenshots, pricing model, demo and documentation links, and direct contact channels. Listings are published in both English and Bulgarian, so a single submission reaches local SMBs and international buyers in the same motion.",
-        "what_p3": "The directory is curated, not pay-to-play. Listings are organized to help the buyer decide — not to reward whoever paid the most.",
+        "what_p3": "The directory is carefully selected, not pay-to-play. Listings are organized to help the buyer decide — not to reward whoever paid the most.",
 
         "step_03": "03 · Who browses us",
         "audience_h2": "The people who decide what gets bought.",
@@ -70,7 +70,7 @@ COPY = {
         "pricing_lead": "We're building the directory's catalog right now. Vendors who join at this stage get listed at no cost and lock in benefits as the audience grows.",
         "pricing_tier": "Early Partner",
         "pricing_price": "€0",
-        "pricing_price_sub": "/ first 12 months",
+        "pricing_price_sub": "/ first 6 months",
         "pricing_note": "Full listing in EN and BG. Featured placement in your category for the launch period. Direct contact form. Monthly performance summary so you can see what your listing is doing. Renewal terms locked in for partners who join before public launch.",
         "pricing_footnote": "Custom arrangements available for vendors with multiple products or specific category needs — happy to discuss.",
 
@@ -91,17 +91,17 @@ COPY = {
 
         "step_01": "01 · Проблемът",
         "problem_h2": "Купувачите и доставчиците не се намират.",
-        "problem_lead": "Намирането на софтуер е счупено и от двете страни — и почти целият бюджет се харчи в пропастта между тях.",
+        "problem_lead": "Намирането на софтуер е трудно за двете страни — и почти целият бюджет се харчи в пропастта между тях.",
         "problem_buyers_h": "Купувачите губят седмици в сравнения.",
         "problem_buyers_p": "Търсачките показват реклами. Сайтовете с ревюта изтласкват този, който плати най-много. Накрая решаващите четат 30 таба, за да оценят 3 опции — и пак не са сигурни.",
         "problem_vendors_h": "Доставчиците харчат бюджет в студени реклами.",
         "problem_vendors_p": "Платените канали достигат до хора, които не са търсили. Цената за лийд расте всяко тримесечие. Идеалните клиенти така и не виждат продукта.",
 
         "step_02": "02 · Какво е SoftwareICO",
-        "what_h2": "Курирана, двуезична директория на бизнес софтуер.",
+        "what_h2": "Внимателно подбрана, двуезична директория за софтуерни продукти.",
         "what_lead": "SoftwareICO организира SaaS инструментите по категории — CRM, ERP, AI чатботове, анализи и още — така че купувачите да могат да сравняват опциите една до друга, вместо да сглобяват резултати от търсене.",
         "what_p2": "Всеки продукт получава истинска, структурирана страница: слоган, описание, скрийншоти, ценови модел, връзки към демо и документация, директни канали за контакт. Обявите се публикуват едновременно на български и английски, така че едно подаване стига и до местните малки фирми, и до международните купувачи.",
-        "what_p3": "Директорията е курирана, а не „плати за позиция“. Подредбата помага на купувача да реши — не награждава този, който е платил най-много.",
+        "what_p3": "Директорията е внимателно подбрана, а не „плати за позиция“. Подредбата помага на купувача да реши — не награждава този, който е платил най-много.",
 
         "step_03": "03 · Кой ни разглежда",
         "audience_h2": "Хората, които решават какво се купува.",
@@ -145,7 +145,7 @@ COPY = {
         "pricing_lead": "В момента изграждаме каталога на директорията. Доставчиците, които се присъединят сега, получават безплатна обява и фиксират условия за в бъдеще, докато аудиторията расте.",
         "pricing_tier": "Ранен партньор",
         "pricing_price": "0 лв.",
-        "pricing_price_sub": "/ първите 12 месеца",
+        "pricing_price_sub": "/ първите 6 месеца",
         "pricing_note": "Пълна обява на BG и EN. Откроена позиция във вашата категория за периода на стартиране. Директна форма за контакт. Месечна справка за представянето на обявата. Условия за подновяване, фиксирани за партньорите, които се присъединят преди публичния старт.",
         "pricing_footnote": "Възможни са персонализирани условия за доставчици с няколко продукта или специфични нужди по категории — с удоволствие ще обсъдим.",
 
