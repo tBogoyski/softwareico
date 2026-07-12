@@ -132,7 +132,7 @@ class ProductDataRequestAdmin(TabbedTranslationAdmin):
         return False
 
     def has_delete_permission(self, request, obj=None):
-        return False
+        return True
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
         extra_context = extra_context or {}
