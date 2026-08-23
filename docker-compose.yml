@@ -16,11 +16,13 @@ services:
     image: redis:7-alpine
     command: >
       redis-server
-      --protected-mode yes
+      --requirepass ${REDIS_PASSWORD:?REDIS_PASSWORD must be set in .env}
       --rename-command SLAVEOF ""
       --rename-command REPLICAOF ""
       --rename-command MODULE ""
       --rename-command CONFIG ""
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD:?REDIS_PASSWORD must be set in .env}
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
