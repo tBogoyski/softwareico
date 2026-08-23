@@ -16,9 +16,9 @@ export default function CategoryCard({ category, index = 0 }) {
     >
       <Link
         to={`/products?category=${category.slug}`}
-        className="block bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition-shadow h-full"
+        className="group block h-full rounded-xl border border-gray-200 bg-white p-6 text-center shadow-card transition-all hover:border-primary-200 hover:shadow-card-hover"
       >
-        <div className="w-14 h-14 mx-auto rounded-full bg-primary-50 flex items-center justify-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary-50 to-primary-100/60 transition-colors group-hover:from-primary-100 group-hover:to-primary-200/60">
           <CategoryIcon
             icon={category.icon}
             className="text-2xl text-primary-600"
@@ -27,12 +27,12 @@ export default function CategoryCard({ category, index = 0 }) {
         <h3 className="mt-4 text-base font-semibold text-gray-900">
           {category.name}
         </h3>
-        <p className="mt-1 text-sm text-gray-500">
+        <span className="mt-2.5 inline-block rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors group-hover:bg-primary-50 group-hover:text-primary-700">
           {category.product_count}{" "}
           {category.product_count === 1
             ? t("category.productSingular")
             : t("category.productPlural")}
-        </p>
+        </span>
       </Link>
     </motion.div>
   );

@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import PageBand from "../components/layout/PageBand";
 import Seo from "../components/ui/Seo";
 import Breadcrumb from "../components/ui/Breadcrumb";
 import PricingBadge from "../components/ui/PricingBadge";
@@ -82,11 +83,9 @@ export default function ProductDetailPage() {
       />
 
       {/* Colored header band */}
-      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
-        <Container className="py-4">
-          <Breadcrumb items={breadcrumbItems} variant="light" />
-        </Container>
-      </section>
+      <PageBand padded={false} className="py-3.5">
+        <Breadcrumb items={breadcrumbItems} variant="light" />
+      </PageBand>
 
       {/* Product header */}
       <section className="bg-gradient-to-b from-primary-50 to-white border-b border-gray-200">
@@ -158,12 +157,6 @@ export default function ProductDetailPage() {
                   <i className="fas fa-coins text-xs" aria-hidden="true" />
                   {t(`pricing.${product.pricing_type}`)}
                 </span>
-                {product.pricing_details && (
-                  <span className="inline-flex items-center px-4 py-2.5 bg-accent-50 text-accent-800 text-sm font-medium rounded-lg border border-accent-200">
-                    <i className="fas fa-coins mr-2 text-accent-500" aria-hidden="true" />
-                    {product.pricing_details}
-                  </span>
-                )}
               </div>
             </div>
           </motion.div>
@@ -173,12 +166,12 @@ export default function ProductDetailPage() {
       {/* Main content */}
       <section className="bg-gray-50 py-8 sm:py-10">
         <Container>
-          <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-10">
+          <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-10 lg:items-start">
             <div className="space-y-8">
               {/* Description card */}
               {product.description && (
                 <motion.div
-                  className="bg-white rounded-xl border border-gray-200 p-6"
+                  className="bg-white rounded-xl border border-gray-200 shadow-card p-6"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
@@ -196,7 +189,7 @@ export default function ProductDetailPage() {
               {/* Image gallery card */}
               {product.images?.length > 0 && (
                 <motion.div
-                  className="bg-white rounded-xl border border-gray-200 p-6"
+                  className="bg-white rounded-xl border border-gray-200 shadow-card p-6"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.15 }}
@@ -212,13 +205,13 @@ export default function ProductDetailPage() {
             </div>
 
             <motion.div
-              className="mt-10 lg:mt-0 space-y-6"
+              className="mt-10 lg:mt-0 lg:sticky lg:top-24 space-y-6"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
               {product.links?.length > 0 && (
-                <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <div className="bg-white rounded-xl border border-gray-200 shadow-card p-5">
                   <h3 className="flex items-center gap-2 text-xs font-semibold text-primary-600 uppercase tracking-wider mb-4">
                     <i className="fas fa-link" aria-hidden="true" />
                     {t("detail.links")}
@@ -260,7 +253,7 @@ export default function ProductDetailPage() {
               )}
 
               {product.contacts?.length > 0 && (
-                <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <div className="bg-white rounded-xl border border-gray-200 shadow-card p-5">
                   <h3 className="flex items-center gap-2 text-xs font-semibold text-primary-600 uppercase tracking-wider mb-4">
                     <i className="fas fa-address-book" aria-hidden="true" />
                     {t("detail.contacts")}
@@ -305,7 +298,7 @@ export default function ProductDetailPage() {
                 </div>
               )}
 
-              <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <div className="bg-white rounded-xl border border-gray-200 shadow-card p-5">
                 <h3 className="flex items-center gap-2 text-xs font-semibold text-primary-600 uppercase tracking-wider mb-4">
                   <i className="fas fa-info-circle" aria-hidden="true" />
                   {t("detail.info")}
@@ -331,6 +324,11 @@ export default function ProductDetailPage() {
                       <div className="text-sm font-medium">{t(`pricing.${product.pricing_type}`)}</div>
                     </div>
                   </div>
+                  {product.pricing_details && (
+                    <p className="mx-3 rounded-lg border border-accent-200 bg-accent-50 px-3 py-2.5 text-[13px] leading-relaxed text-accent-800">
+                      {product.pricing_details}
+                    </p>
+                  )}
                   {product.is_featured && (
                     <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
                       <span className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center flex-shrink-0">

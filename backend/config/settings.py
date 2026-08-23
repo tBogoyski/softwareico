@@ -77,9 +77,11 @@ CACHES = {
         "LOCATION": os.environ.get("REDIS_URL", "redis://redis:6379/0"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "IGNORE_EXCEPTIONS": True,
         },
     }
 }
+DJANGO_REDIS_LOG_IGNORED_EXCEPTIONS = True
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

@@ -36,6 +36,11 @@ export default {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
+      boxShadow: {
+        card: "0 1px 2px 0 rgb(16 24 40 / 0.04), 0 1px 3px 0 rgb(16 24 40 / 0.06)",
+        "card-hover":
+          "0 8px 24px -6px rgb(79 70 229 / 0.18), 0 2px 6px -2px rgb(16 24 40 / 0.06)",
+      },
     },
   },
   plugins: [],

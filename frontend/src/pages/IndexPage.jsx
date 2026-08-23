@@ -158,13 +158,22 @@ function StatsSection() {
 
   if (loading || !stats) return null;
 
+  // Pulled up over the hero's bottom edge. This gives the hero-to-content seam
+  // something to land on and removes the flat white band the stats used to sit
+  // in. z-10 keeps it above the hero's animated blobs.
   return (
-    <section className="bg-white py-16">
+    <section className="relative z-10 -mt-10">
       <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <StatsCounter value={stats.products} label={t("index.statsProducts")} />
-          <StatsCounter value={stats.categories} label={t("index.statsCategories")} />
-          <StatsCounter value={stats.tags} label={t("index.statsTags")} />
+        <div className="grid grid-cols-1 divide-y divide-gray-100 rounded-2xl border border-gray-100 bg-white shadow-card-hover sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="px-6 py-7">
+            <StatsCounter value={stats.products} label={t("index.statsProducts")} />
+          </div>
+          <div className="px-6 py-7">
+            <StatsCounter value={stats.categories} label={t("index.statsCategories")} />
+          </div>
+          <div className="px-6 py-7">
+            <StatsCounter value={stats.tags} label={t("index.statsTags")} />
+          </div>
         </div>
       </Container>
     </section>
@@ -175,7 +184,7 @@ function FeaturedSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 pt-14 pb-16">
       <Container>
         <SectionHeading
           title={t("index.featuredTitle")}
@@ -195,7 +204,7 @@ function CategoriesSection() {
   if (categories.length === 0) return null;
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-20">
       <Container>
         <SectionHeading
           title={t("index.categoriesTitle")}
@@ -215,8 +224,17 @@ function CtaSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-      <Container className="py-16 text-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+      <Container className="relative py-16 text-center">
         <motion.h2
           className="text-2xl sm:text-3xl font-bold"
           initial={{ opacity: 0, y: 20 }}

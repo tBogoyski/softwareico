@@ -7,14 +7,24 @@ const styles = {
   contact_for_pricing: "bg-gray-100 text-gray-800",
 };
 
-export default function PricingBadge({ pricingType }) {
+/**
+ * `sm` is used in the product card footer, where the badge sits beside the
+ * category and shouldn't outweigh it. `md` is the original size, still used
+ * everywhere else.
+ */
+const sizes = {
+  sm: "gap-1.5 px-2.5 py-1 text-xs",
+  md: "gap-1.5 px-3 py-1 text-sm",
+};
+
+export default function PricingBadge({ pricingType, size = "md" }) {
   const { t } = useLanguage();
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${
-        styles[pricingType] || styles.free
-      }`}
+      className={`inline-flex flex-shrink-0 items-center rounded-full font-medium ${
+        sizes[size] || sizes.md
+      } ${styles[pricingType] || styles.free}`}
     >
       <i className="fas fa-coins" aria-hidden="true" />
       {t(`pricing.${pricingType}`) || pricingType}

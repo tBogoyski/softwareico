@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import PageBand from "../components/layout/PageBand";
 import Seo from "../components/ui/Seo";
 import ProductCard from "../components/product/ProductCard";
 import ProductFilter from "../components/product/ProductFilter";
@@ -88,6 +89,52 @@ export default function ProductListPage() {
     { value: "created_at", label: t("list.sortOldest") },
   ];
 
+  // Active filters, rendered as removable chips in the header band. Each chip
+  // clears just its own filter; `clearAllFilters` clears the lot.
+  const selectedTagSlugs = filters.tags
+    ? filters.tags.split(",").filter(Boolean)
+    : [];
+
+  const activeChips = [];
+
+  if (filters.search) {
+    activeChips.push({
+      key: `search-${filters.search}`,
+      label: `\u201c${filters.search}\u201d`,
+      onRemove: () => handleFilterChange("search", ""),
+    });
+  }
+
+  if (filters.category) {
+    const cat = categories.find((c) => c.slug === filters.category);
+    activeChips.push({
+      key: `category-${filters.category}`,
+      label: cat ? cat.name : filters.category,
+      onRemove: () => handleFilterChange("category", ""),
+    });
+  }
+
+  if (filters.pricing) {
+    activeChips.push({
+      key: `pricing-${filters.pricing}`,
+      label: t(`pricing.${filters.pricing}`) || filters.pricing,
+      onRemove: () => handleFilterChange("pricing", ""),
+    });
+  }
+
+  for (const slug of selectedTagSlugs) {
+    const tag = tags.find((x) => x.slug === slug);
+    activeChips.push({
+      key: `tag-${slug}`,
+      label: tag ? tag.name : slug,
+      onRemove: () =>
+        handleFilterChange(
+          "tags",
+          selectedTagSlugs.filter((s) => s !== slug).join(",")
+        ),
+    });
+  }
+
   return (
     <>
       <Seo
@@ -96,104 +143,115 @@ export default function ProductListPage() {
         canonical="/products"
       />
 
-      {/* Colorful page header with embedded search */}
-      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <Container className="py-10 sm:py-14">
-          <motion.h1
-            className="text-2xl sm:text-3xl font-bold"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {t("list.title")}
-          </motion.h1>
-          <motion.p
-            className="mt-2 text-primary-100"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.05 }}
-          >
-            {t("list.subtitle")}
-          </motion.p>
+      {/* Page header band. The result count and the active filters now live
+          inside it, so the band carries information instead of just colour. */}
+      <PageBand>
+        <motion.h1
+          className="text-2xl sm:text-3xl font-bold tracking-tight"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {t("list.title")}
+        </motion.h1>
+        <motion.p
+          className="mt-2 text-primary-100"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+        >
+          {t("list.subtitle")}
+        </motion.p>
 
-          <motion.form
-            onSubmit={handleSearchSubmit}
-            className="mt-6 flex items-center max-w-2xl"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
+        <motion.form
+          onSubmit={handleSearchSubmit}
+          className="mt-6 flex items-center max-w-2xl"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          <div className="relative flex-1">
+            <i
+              className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+              aria-hidden="true"
+            />
+            <input
+              type="text"
+              value={searchInput}
+              onChange={handleSearchChange}
+              placeholder={t("index.searchPlaceholder")}
+              className="w-full pl-11 pr-4 py-3 rounded-l-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-400 text-sm"
+            />
+          </div>
+          <button
+            type="submit"
+            className="px-6 py-3 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-r-xl transition-colors text-sm"
           >
-            <div className="relative flex-1">
-              <i
-                className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                aria-hidden="true"
-              />
-              <input
-                type="text"
-                value={searchInput}
-                onChange={handleSearchChange}
-                placeholder={t("index.searchPlaceholder")}
-                className="w-full pl-11 pr-4 py-3 rounded-l-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-400 text-sm"
-              />
-            </div>
+            <i className="fas fa-search mr-1.5" aria-hidden="true" />
+            {t("index.search")}
+          </button>
+        </motion.form>
+
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="text-sm text-primary-100 mr-1">
+            {loading ? (
+              <span className="inline-flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-white/70 border-t-transparent rounded-full animate-spin" />
+                {t("list.loading")}
+              </span>
+            ) : (
+              <>
+                <span className="font-bold text-white">{count}</span>{" "}
+                {count === 1 ? t("list.productSingular") : t("list.productPlural")}
+              </>
+            )}
+          </span>
+
+          {activeChips.map((chip) => (
             <button
-              type="submit"
-              className="px-6 py-3 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-r-xl transition-colors text-sm"
+              key={chip.key}
+              onClick={chip.onRemove}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-medium hover:bg-white/20 transition-colors"
             >
-              <i className="fas fa-search mr-1.5" aria-hidden="true" />
-              {t("index.search")}
+              {chip.label}
+              <i className="fas fa-xmark text-[10px] text-white/70" aria-hidden="true" />
             </button>
-          </motion.form>
-        </Container>
-      </section>
+          ))}
 
-      {/* Sort toolbar + results count */}
+          {hasActiveFilters && (
+            <button
+              onClick={clearAllFilters}
+              className="ml-1 text-[13px] font-medium text-white/75 underline underline-offset-4 hover:text-white transition-colors"
+            >
+              {t("list.clearFilters")}
+            </button>
+          )}
+        </div>
+      </PageBand>
+
+      {/* Sort toolbar. The count moved up into the band, so this row holds
+          only the sort control. */}
       <section className="bg-white border-b border-gray-200 sticky top-16 z-40">
         <Container>
-          <div className="flex items-center justify-between py-3 gap-4">
-            <p className="text-sm text-gray-600 flex-shrink-0">
-              {loading ? (
-                <span className="inline-flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-primary-600 border-t-transparent rounded-full animate-spin" />
-                  {t("list.loading")}
-                </span>
-              ) : (
-                <>
-                  <span className="font-semibold text-gray-900">{count}</span>{" "}
-                  {count === 1 ? t("list.productSingular") : t("list.productPlural")}
-                  {hasActiveFilters && (
-                    <button
-                      onClick={clearAllFilters}
-                      className="ml-3 text-primary-600 hover:text-primary-700 font-medium transition-colors"
-                    >
-                      <i className="fas fa-xmark mr-1" aria-hidden="true" />
-                      {t("list.clearFilters")}
-                    </button>
-                  )}
-                </>
-              )}
-            </p>
-
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <label
-                htmlFor="sort-select"
-                className="text-sm text-gray-500 hidden sm:block"
-              >
-                {t("list.sortLabel")}
-              </label>
-              <select
-                id="sort-select"
-                value={filters.ordering || ""}
-                onChange={(e) => handleFilterChange("ordering", e.target.value)}
-                className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-              >
-                {SORT_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+          <div className="flex items-center justify-end py-3 gap-2">
+            <label
+              htmlFor="sort-select"
+              className="text-sm text-gray-500 hidden sm:block"
+            >
+              {t("list.sortLabel")}
+            </label>
+            <select
+              id="sort-select"
+              value={filters.ordering || ""}
+              onChange={(e) => handleFilterChange("ordering", e.target.value)}
+              className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            >
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
           </div>
         </Container>
       </section>
@@ -216,18 +274,28 @@ export default function ProductListPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {[...Array(6)].map((_, i) => (
                     <div
-                      key={i}
-                      className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 animate-pulse"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="w-12 h-12 rounded-lg bg-gray-200" />
-                        <div className="w-16 h-5 rounded-full bg-gray-200" />
-                      </div>
-                      <div className="mt-4 h-5 bg-gray-200 rounded w-3/4" />
-                      <div className="mt-2 h-4 bg-gray-200 rounded w-full" />
-                      <div className="mt-1 h-4 bg-gray-200 rounded w-2/3" />
-                      <div className="mt-4 h-3 bg-gray-200 rounded w-1/3" />
-                    </div>
+            key={i}
+            className="bg-white rounded-xl shadow-card border border-gray-200 animate-pulse"
+            >
+            <div className="flex items-start gap-3.5 px-5 pt-5">
+            <div className="w-14 h-14 rounded-lg bg-gray-200 flex-shrink-0" />
+            <div className="flex-1 pt-1.5">
+            <div className="h-4 bg-gray-200 rounded w-3/4" />
+            </div>
+            </div>
+            <div className="mt-3 px-5 space-y-2">
+            <div className="h-3.5 bg-gray-200 rounded w-full" />
+            <div className="h-3.5 bg-gray-200 rounded w-2/3" />
+            </div>
+            <div className="mt-3.5 px-5 flex gap-1.5">
+            <div className="h-6 w-20 rounded-md bg-gray-200" />
+            <div className="h-6 w-16 rounded-md bg-gray-200" />
+            </div>
+            <div className="mt-[18px] flex items-center justify-between border-t border-gray-100 px-5 py-3">
+            <div className="h-4 w-24 rounded bg-gray-200" />
+            <div className="h-6 w-20 rounded-full bg-gray-200" />
+            </div>
+            </div>
                   ))}
                 </div>
               )}

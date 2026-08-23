@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import Container from "../components/layout/Container";
+import PageBand from "../components/layout/PageBand";
 import Seo from "../components/ui/Seo";
 import Button from "../components/ui/Button";
 import useStats from "../hooks/useStats";
@@ -27,26 +28,24 @@ export default function AboutPage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <Container className="py-16 sm:py-20 text-center">
-          <motion.h1
-            className="text-3xl sm:text-4xl font-extrabold"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {t("about.title")}
-          </motion.h1>
-          <motion.p
-            className="mt-4 text-lg text-primary-100 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            {t("about.heroSubtitle")}
-          </motion.p>
-        </Container>
-      </section>
+      <PageBand padded={false} className="py-12 sm:py-16 text-center">
+        <motion.h1
+          className="text-3xl sm:text-4xl font-extrabold tracking-tight"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          {t("about.title")}
+        </motion.h1>
+        <motion.p
+          className="mt-4 text-lg text-primary-100 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          {t("about.heroSubtitle")}
+        </motion.p>
+      </PageBand>
 
       {/* Mission */}
       <section className="bg-white py-16">
