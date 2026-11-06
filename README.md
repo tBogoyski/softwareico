@@ -118,14 +118,8 @@ A web platform where businesses can discover SaaS products tailored to their ind
 - **`link_type`**: Enum -- `website`, `demo`, `documentation`, `video`, `github`
 - **`contact_type`**: Enum -- `email`, `phone`, `facebook`, `linkedin`, `other`
 
-## Installation & Development Setup
+## Installation & Setup
 
-### Prerequisites
-
-- Docker & Docker Compose
-- Git
-
-That's it -- everything else runs inside containers.
 
 ### 1. Clone and Configure
 
